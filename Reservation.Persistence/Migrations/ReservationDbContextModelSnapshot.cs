@@ -235,6 +235,44 @@ namespace Reservation.Persistence.Migrations
                     b.ToTable("CompanyReviews");
                 });
 
+            modelBuilder.Entity("Reservation.Domain.Entities.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Reservation.Domain.Entities.Reservation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -246,6 +284,9 @@ namespace Reservation.Persistence.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
@@ -282,6 +323,8 @@ namespace Reservation.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ServiceId");
 
@@ -553,6 +596,11 @@ namespace Reservation.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Reservation.Domain.Entities.Customer", "Customer")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Reservation.Domain.Entities.Service", "Service")
                         .WithMany("Reservations")
                         .HasForeignKey("ServiceId")
@@ -565,6 +613,8 @@ namespace Reservation.Persistence.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Company");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("Service");
 
@@ -630,6 +680,11 @@ namespace Reservation.Persistence.Migrations
                     b.Navigation("StaffMembers");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Reservation.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.Service", b =>

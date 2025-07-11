@@ -9,3 +9,15 @@ C:\Users\t.bakhishli\source\repos\RSM\Reservation.Shared\obj\Debug\net8.0\Reserv
 C:\Users\t.bakhishli\source\repos\RSM\Reservation.Shared\obj\Debug\net8.0\refint\Reservation.Shared.dll
 C:\Users\t.bakhishli\source\repos\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.pdb
 C:\Users\t.bakhishli\source\repos\RSM\Reservation.Shared\obj\Debug\net8.0\ref\Reservation.Shared.dll
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\bin\Debug\net8.0\Reservation.Shared.deps.json
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\bin\Debug\net8.0\Reservation.Shared.dll
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\bin\Debug\net8.0\Reservation.Shared.pdb
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.AssemblyInfoInputs.cache
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.AssemblyInfo.cs
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.csproj.CoreCompileInputs.cache
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.sourcelink.json
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.dll
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\refint\Reservation.Shared.dll
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.pdb
+C:\Users\t.bakhishli\Desktop\RSM\Reservation.Shared\obj\Debug\net8.0\ref\Reservation.Shared.dll

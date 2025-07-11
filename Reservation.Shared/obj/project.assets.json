@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\t.bakhishli\\source\\repos\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
+      "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
       "projectName": "Reservation.Shared",
-      "projectPath": "C:\\Users\\t.bakhishli\\source\\repos\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
+      "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
       "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\t.bakhishli\\source\\repos\\RSM\\Reservation.Shared\\obj\\",
+      "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",

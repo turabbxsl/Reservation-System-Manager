@@ -38,5 +38,12 @@ namespace Reservation.Domain.Entities
         public Guid ServiceId { get; set; }
         public Service Service { get; set; } = null!;
 
+
+        /// <summary>
+        /// Müştəri
+        /// </summary>
+        public Guid? CustomerId { get; set; }
+        public Customer? Customer { get; set; }
+
     }
 }

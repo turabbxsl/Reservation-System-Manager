@@ -21,6 +21,7 @@ namespace Reservation.Persistence.Context
         public DbSet<Service> Services => Set<Service>();
         public DbSet<StaffMember> StaffMembers => Set<StaffMember>();
         public DbSet<Specialty> Specialties => Set<Specialty>();
+        public DbSet<Customer> Customers => Set<Customer>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -79,7 +80,13 @@ namespace Reservation.Persistence.Context
                     .WithMany(sm => sm.Reservations)
                     .HasForeignKey(x => x.StaffMemberId)
                     .OnDelete(DeleteBehavior.SetNull);
+
+                entity.HasOne(x => x.Customer)
+                    .WithMany(z => z.Reservations)
+                    .HasForeignKey(x=>x.CustomerId)
+                    .OnDelete(DeleteBehavior.SetNull);
             });
+
 
             modelBuilder.Entity<Service>(entity =>
             {
@@ -133,6 +140,26 @@ namespace Reservation.Persistence.Context
                     .WithOne(sm => sm.Specialty)
                     .HasForeignKey(sm => sm.SpecialtyId)
                     .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+
+                entity.Property(x => x.FullName)
+                      .IsRequired()
+                      .HasMaxLength(100);
+
+                entity.Property(x => x.PhoneNumber)
+                      .IsRequired()
+                      .HasMaxLength(20);
+
+                entity.Property(x => x.Email)
+                      .HasMaxLength(100);
+
+                entity.Property(x => x.Note)
+                      .HasMaxLength(500);
             });
         }
 
