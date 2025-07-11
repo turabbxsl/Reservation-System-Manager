@@ -1,0 +1,12 @@
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\bin\Debug\net8.0\Reservation.Domain.deps.json
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\bin\Debug\net8.0\Reservation.Domain.dll
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\bin\Debug\net8.0\Reservation.Domain.pdb
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.AssemblyInfoInputs.cache
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.AssemblyInfo.cs
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.csproj.CoreCompileInputs.cache
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.dll
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\refint\Reservation.Domain.dll
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.pdb
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\ref\Reservation.Domain.dll
+C:\Users\t.bakhishli\source\repos\RSM\Reservation.Domain\obj\Debug\net8.0\Reservation.Domain.csproj.AssemblyReference.cache
