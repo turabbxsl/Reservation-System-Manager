@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "Reservation.API.Controllers.CompanyController",
+    "Method": "Register",
+    "RelativePath": "api/Company/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Companies.Dtos.RegisterCompanyDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
