@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Reservation.Application.Interfaces.Services;
+using Reservation.Application.Services;
 using System.Reflection;
 
 namespace Reservation.Application.ServiceRegistration
@@ -9,6 +11,9 @@ namespace Reservation.Application.ServiceRegistration
         {
             services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPasswordService, PasswordService>();
 
             return services;
         }

@@ -7,6 +7,7 @@ namespace Reservation.Persistence.Repositories
 {
     public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
+
         public CompanyRepository(ReservationDbContext context) : base(context) { }
 
         public async Task<Company?> GetByEmailAsync(string email) => await _context.Companies.FirstOrDefaultAsync(c => c.Email == email);

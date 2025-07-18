@@ -5,8 +5,8 @@ namespace Reservation.Domain.Entities
     public class User : IdentityUser<Guid>
     {
         public string FullName { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string PasswordHash { get; set; } = null!;
+        //public string Email { get; set; } = null!;
+        //public string PasswordHash { get; set; } = null!;
         public string? PhoneNumber { get; set; }
 
         public Guid CompanyId { get; set; }

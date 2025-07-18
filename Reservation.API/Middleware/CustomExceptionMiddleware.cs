@@ -23,11 +23,32 @@ namespace Reservation.API.Middleware
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-
-                context.Response.StatusCode = 500;
                 context.Response.ContentType = "application/json";
 
-                var response = ResponseDto<string>.ErrorResponse(ex.Message, 500);
+                ResponseDto<string> response;
+                int statusCode;
+
+                switch (ex)
+                {
+                    case Reservation.Domain.Exceptions.Company.EmailAlreadyExistsException:
+                        statusCode = StatusCodes.Status400BadRequest;
+                        response = ResponseDto<string>.ErrorResponse(ex.Message, statusCode);
+                        break;
+                    case Reservation.Domain.Exceptions.Customer.EmailAlreadyExistsException:
+                        statusCode = StatusCodes.Status400BadRequest;
+                        response = ResponseDto<string>.ErrorResponse(ex.Message, statusCode);
+                        break;
+                    case Reservation.Domain.Exceptions.Customer.PhoneNumberAlreadyExistsException:
+                        statusCode = StatusCodes.Status400BadRequest;
+                        response = ResponseDto<string>.ErrorResponse(ex.Message, statusCode);
+                        break;
+                    default:
+                        statusCode = StatusCodes.Status200OK;
+                        response = ResponseDto<string>.ErrorResponse(new List<string>() { ex.Message, "Gözlənilməz xəta baş verdi" }, statusCode);
+                        break;
+                }
+
+                context.Response.StatusCode = 200;
                 var json = JsonSerializer.Serialize(response);
                 await context.Response.WriteAsync(json);
             }

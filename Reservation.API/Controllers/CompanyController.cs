@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Reservation.Application.Features.Companies.Commands;
 using Reservation.Application.Features.Companies.Dtos;
-using Reservation.Shared.BaseResponse;
+using Reservation.Application.Features.Companies.Query;
+using Reservation.Application.Features.Services.Queries;
 
 namespace Reservation.API.Controllers
 {
@@ -15,16 +16,31 @@ namespace Reservation.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var companies = await _mediator.Send(new GetAllCompaniesQuery());
+            return Ok(companies);
+        }
+
+        [HttpGet("{companyId}/services")]
+        public async Task<IActionResult> GetServicesByCompanyId(Guid companyId)
+        {
+            var services = await _mediator.Send(new GetServicesByCompanyQuery(companyId));
+            return Ok(services);
+        }
+       
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterCompanyDto dto)
         {
             var command = new RegisterCompanyCommand(dto);
-            var companyId = await _mediator.Send(command);
+            var result = await _mediator.Send(command);
 
-            var response = ResponseDto<Guid>.SuccessResponse(companyId, "Şirkət uğurla yaradıldı", 201);
-
-            return CreateActionResultInstance(response);
+            return CreateActionResultInstance(result);
         }
+
+
 
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.API\\Reservation.API.csproj": {}
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Reservation.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.API\\Reservation.API.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Reservation.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.API\\Reservation.API.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Reservation.API.csproj",
         "projectName": "Reservation.API",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.API\\Reservation.API.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Reservation.API.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.API\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,17 +29,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\Reservation.Persistence.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\Reservation.Persistence.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Reservation.Persistence.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Reservation.Persistence.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj"
               }
             }
           }
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj",
         "projectName": "Reservation.Application",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -118,11 +118,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj"
               }
             }
           }
@@ -142,9 +142,21 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[13.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -167,14 +179,14 @@
         }
       }
     },
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj",
         "projectName": "Reservation.Domain",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -234,14 +246,14 @@
         }
       }
     },
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj",
         "projectName": "Reservation.Infrastructure",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\Reservation.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -259,14 +271,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj"
               }
             }
           }
@@ -305,14 +317,14 @@
         }
       }
     },
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\Reservation.Persistence.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Reservation.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\Reservation.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Reservation.Persistence.csproj",
         "projectName": "Reservation.Persistence",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\Reservation.Persistence.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Reservation.Persistence.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Persistence\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -330,14 +342,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Application\\Reservation.Application.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Domain\\Reservation.Domain.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj"
               },
-              "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj": {
-                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj"
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj"
               }
             }
           }
@@ -406,14 +418,14 @@
         }
       }
     },
-    "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj": {
+    "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj",
         "projectName": "Reservation.Shared",
-        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\Reservation.Shared.csproj",
+        "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\Reservation.Shared.csproj",
         "packagesPath": "C:\\Users\\t.bakhishli\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\RSM\\Reservation.Shared\\obj\\",
+        "outputPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\t.bakhishli\\AppData\\Roaming\\NuGet\\NuGet.Config",

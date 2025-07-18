@@ -1,6 +1,6 @@
-using Reservation.Persistence.ServiceRegistration;
-using Reservation.Application.ServiceRegistration;
 using Reservation.API.Middleware;
+using Reservation.Application.ServiceRegistration;
+using Reservation.Persistence.ServiceRegistration;
 
 namespace Reservation.API
 {
@@ -13,6 +13,14 @@ namespace Reservation.API
             var configuration = builder.Configuration;
 
             builder.Services.AddControllers();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    policy => policy.AllowAnyOrigin()
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod());
+            });
 
             builder.Services.AddPersistenceServices(configuration);
             builder.Services.AddApplicationServices();
@@ -29,6 +37,8 @@ namespace Reservation.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 

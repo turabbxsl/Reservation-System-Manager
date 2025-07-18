@@ -18,6 +18,8 @@ namespace Reservation.Domain.Entities
 
         public string? Note { get; set; }
 
+        public string PasswordHash { get; set; }
+
         public ICollection<Reservation> Reservations { get; set; }
 
         public Customer()

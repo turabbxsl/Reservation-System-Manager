@@ -1,19 +1,24 @@
-﻿using Reservation.Application.Interfaces;
-using Reservation.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Reservation.Application.Interfaces;
 using Reservation.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Reservation.Persistence.Repositories
 {
     public class ReservationRepository : GenericRepository<Reservation.Domain.Entities.Reservation>, IReservationRepository
     {
-        public ReservationRepository(ReservationDbContext context) : base(context)
-        {
+        public ReservationRepository(ReservationDbContext context) : base(context) { }
 
+        public async Task<int> ExistAsync(Guid companyId, Guid serviceId, DateTime dateTime)
+        {
+            var res = await _context.Reservations
+                                .Where(r => r.CompanyId == companyId &&
+                                     r.ServiceId == serviceId &&
+                                     r.ReservationTime == dateTime)
+                                .CountAsync();
+           
+
+
+            return res;
         }
     }
 }

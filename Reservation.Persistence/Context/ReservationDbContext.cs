@@ -55,13 +55,13 @@ namespace Reservation.Persistence.Context
                 entity.Property(x => x.ReservationTime)
                     .IsRequired();
 
-                entity.Property(x => x.CustomerName)
-                    .IsRequired()
-                    .HasMaxLength(100);
+                //entity.Property(x => x.CustomerName)
+                //    .IsRequired()
+                //    .HasMaxLength(100);
 
-                entity.Property(x => x.CustomerPhone)
-                    .IsRequired()
-                    .HasMaxLength(20);
+                //entity.Property(x => x.CustomerPhone)
+                //    .IsRequired()
+                //    .HasMaxLength(20);
 
                 entity.Property(x => x.Status)
                     .IsRequired();

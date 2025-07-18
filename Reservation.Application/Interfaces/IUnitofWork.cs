@@ -3,7 +3,11 @@
     public interface IUnitofWork:IAsyncDisposable
     {
         ICompanyRepository Companies { get; }
+        ICustomerRepository Customers { get; }
         IReservationRepository Reservations { get; }
+        IServiceRepository Services { get; }
+        ISpecialityRepository Specialities { get; }
+        IStaffMemberRepository StaffMembers{ get; }
 
         Task<int> SaveChangesAsync();
     }

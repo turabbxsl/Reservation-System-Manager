@@ -21,7 +21,8 @@ namespace Reservation.Persistence.ServiceRegistration
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddIdentityCore<User>(options => {
+            services.AddIdentity<User, IdentityRole<Guid>>(options =>
+            {
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
@@ -29,25 +30,22 @@ namespace Reservation.Persistence.ServiceRegistration
                 options.Password.RequireDigit = false;
                 options.Password.RequiredUniqueChars = 1;
 
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
             })
-            .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<ReservationDbContext>()
             .AddErrorDescriber<CustomIdentityErrorDescriber>()
-            .AddSignInManager<SignInManager<User>>()
-            .AddDefaultTokenProviders(); ;
+            .AddDefaultTokenProviders();
 
-            services.AddAuthentication(IdentityConstants.ApplicationScheme)
-            .AddCookie(IdentityConstants.ApplicationScheme, options =>
-            {
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-                options.SlidingExpiration = true;
-            });
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.LoginPath = "/Account/Login";
+            //    options.AccessDeniedPath = "/Account/AccessDenied";
+            //    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            //    options.SlidingExpiration = true;
+            //});
 
             services.AddScoped<IUnitofWork, UnitofWork>();
-            services.AddScoped<ICompanyService, CompanyService>();
+            //services.AddScoped<ICompanyService, CompanyService>();
 
             return services;
         }

@@ -1,0 +1,17 @@
+.services-section .service-card {
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+  }
+  .services-section .service-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .reviews-section .review-box {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .blockquote {
+    font-style: italic;
+    font-size: 1rem;
+  }

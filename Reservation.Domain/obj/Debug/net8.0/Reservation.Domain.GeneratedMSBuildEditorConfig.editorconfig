@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Reservation.Domain
-build_property.ProjectDir = C:\Users\t.bakhishli\Desktop\RSM\Reservation.Domain\
+build_property.ProjectDir = C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Domain\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

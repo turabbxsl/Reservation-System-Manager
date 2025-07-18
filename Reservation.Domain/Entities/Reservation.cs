@@ -16,8 +16,8 @@ namespace Reservation.Domain.Entities
         /// Reservasiya vaxtı - istifadəçinin seçdiyi vaxt (CreatedAt deyil)
         /// </summary>
         public DateTime ReservationTime { get; set; } 
-        public string CustomerName { get; set; } = null!;
-        public string CustomerPhone { get; set; } = null!;
+/*        public string CustomerName { get; set; } = null!;
+        public string CustomerPhone { get; set; } = null!;*/
 
         /// <summary>
         /// Həkim / Berber / Usta
