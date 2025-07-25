@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using Reservation.Application.Features.Auth.ViewModels;
@@ -34,7 +35,10 @@ namespace Reservation.Application.Services
             string role = string.Empty;
 
             var users = _userManager.Users.ToList();
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.Users
+                                         .Include(u => u.Company)
+                                         .FirstOrDefaultAsync(u => u.Email == email);
+
             if (user != null)
             {
                 var checkPass = await _signInManager.CheckPasswordSignInAsync(user, password, false);
@@ -51,6 +55,8 @@ namespace Reservation.Application.Services
                         Id = user.Id,
                         Email = user.Email,
                         FullName = user.FullName,
+                        CompanyName = user.Company?.Name,
+                        CompanyId = user.Company?.Id,
                         Role = role,
                         Token = _passwordService.GenerateJwtToken(user.Email!, role, _configuration)
                     };
@@ -58,7 +64,7 @@ namespace Reservation.Application.Services
                     return ResponseDto<LoginVM>.SuccessResponse(loginVm, "Giriş uğurla tamamlandı", 200);
                 }
 
-                return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 401);
+                return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 200);
             }
 
             var customer = await _unitOfWork.Customers.GetByEmailAsync(email);

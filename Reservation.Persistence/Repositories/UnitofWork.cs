@@ -16,6 +16,7 @@ namespace Reservation.Persistence.Repositories
             Services = new ServiceRepository(_context);
             Specialities = new SpecialityRepository(_context);
             StaffMembers = new StaffMemberRepository(_context);
+            Users = new UserRepository(_context);
         }
 
         public ICompanyRepository Companies { get; private set; }
@@ -29,6 +30,8 @@ namespace Reservation.Persistence.Repositories
         public ISpecialityRepository Specialities { get; private set; }
 
         public IStaffMemberRepository StaffMembers { get; private set; }
+
+        public IUserRepository Users { get; private set; }
 
         public async ValueTask DisposeAsync() => await _context.DisposeAsync();
 

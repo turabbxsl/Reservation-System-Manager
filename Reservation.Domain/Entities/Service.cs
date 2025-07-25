@@ -50,10 +50,13 @@ namespace Reservation.Domain.Entities
 
         public ICollection<Reservation> Reservations { get; set; }
 
+        public ICollection<StaffMemberService> StaffMemberServices { get; set; }
+
 
         public Service()
         {
             Reservations = new List<Reservation>();
+            StaffMemberServices = new List<StaffMemberService>();
         }
     }
 }

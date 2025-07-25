@@ -23,7 +23,7 @@
 
       <label>Tarix seçin:</label>
       <input type="date" v-model="selectedDate" class="form-control mb-3" @change="fetchAvailableHours"
-        :disabled="!selectedServiceId" />
+        :disabled="!selectedServiceId" :min="today" />
 
       <label>Vaxt seçin:</label>
       <select v-model="selectedTime" class="form-select mb-3" :disabled="!Object.keys(availableTimes).length">
@@ -33,7 +33,7 @@
         </option>
       </select>
 
-      <button class="btn btn-primary" @click="createReservation" :disabled="!isValid">
+      <button class="btn btn-primary" @click="submitReservation" :disabled="!isValid">
         Rezervasiya Et
       </button>
 
@@ -44,13 +44,21 @@
 <script>
 
 import { getAllCompanies, getServicesByCompanyId } from "@/services/companyService";
-import { getAvailableTimes } from "@/services/reservationService";
+import { getAvailableTimes, createReservation } from "@/services/reservationService";
 import { ref, onMounted, watch, computed } from "vue";
+import { useAuthStore } from "@/stores/authStore";
+import moment from "moment";
+import notify from "@/assets/js/notify";
+import { useRouter } from "vue-router";
 
 
 export default {
   name: 'ReservePage',
   setup() {
+
+    const authStore = useAuthStore();
+    const router = useRouter();
+
     const companies = ref([])
     const services = ref([]);
     const availableTimes = ref({});
@@ -61,6 +69,8 @@ export default {
     const selectedDate = ref("");
     const selectedTime = ref("");
 
+    const today = ref("");
+
     const fetchCompanies = async () => {
       try {
         const res = await getAllCompanies();
@@ -69,7 +79,7 @@ export default {
         }
         else {
           res.errors.forEach((error) => {
-            this.$notify('error', error, 'Şirkətlər gətirilə bilmədi');
+            notify('error', error, 'Şirkətlər gətirilə bilmədi');
           });
         }
       }
@@ -83,10 +93,10 @@ export default {
         const res = await getServicesByCompanyId(companyId);
         if (res.isSuccess) {
           services.value = res.data;
-          availableTimes.value = {}; // Reset available times when services change
+          availableTimes.value = {};
         } else {
           res.errors.forEach((error) => {
-            this.$notify('error', error, 'Xidmətlər gətirilə bilmədi');
+            notify('error', error, 'Xidmətlər gətirilə bilmədi');
           });
         }
       } catch (error) {
@@ -108,13 +118,52 @@ export default {
           availableTimes.value = res.data;
         } else {
           res.errors.forEach((error) => {
-            this.$notify('error', error, 'Xidmətlər gətirilə bilmədi');
+            notify('error', error, 'Xidmətlər gətirilə bilmədi');
           });
         }
       } catch (error) {
         console.log("Saatlar yüklənmədi:", error);
       }
     };
+
+    const submitReservation = async () => {
+      if (!isValid.value) {
+        notify('error', 'Bütün sahələri doldurun', 'Rezervasiya yaradıla bilmədi');
+        return;
+      }
+
+      const formattedDate = moment(selectedDate.value).format('DD-MM-YYYY');
+
+      const reservationData = {
+        companyId: selectedCompanyId.value,
+        serviceId: selectedServiceId.value,
+        customerId: authStore.user?.id,
+        reservationDate: formattedDate,
+        reservationTime: selectedTime.value
+      };
+
+      try {
+        const res = await createReservation(reservationData);
+        console.log('Reservation response:', res);
+        if (res.isSuccess) {
+          console.log('Reservation created successfully:', res.data);
+          notify('success', 'Rezervasiya uğurla yaradıldı', 'Uğurlu');
+          router.push('/profile');
+          selectedCompanyId.value = null;
+          selectedServiceId.value = "";
+          selectedDate.value = "";
+          selectedTime.value = "";
+          availableTimes.value = {};
+          services.value = [];
+        } else {
+          res.errors.forEach((error) => {
+            notify('error', error, 'Rezervasiya yaradıla bilmədi');
+          });
+        }
+      } catch (error) {
+        console.log('catch unexpecting error', error);
+      }
+    }
 
     watch(selectedCompanyId, (newId) => {
       if (newId) {
@@ -131,6 +180,14 @@ export default {
 
     onMounted(fetchCompanies)
 
+    onMounted(() => {
+      const now = new Date();
+      const yyyy = now.getFullYear();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      today.value = `${yyyy}-${mm}-${dd}`;
+    });
+
     return {
       companies,
       services,
@@ -140,7 +197,9 @@ export default {
       selectedTime,
       availableTimes,
       fetchAvailableHours,
-      isValid
+      submitReservation,
+      isValid,
+      today
     }
   }
 }

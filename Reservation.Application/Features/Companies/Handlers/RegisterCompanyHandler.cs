@@ -69,6 +69,15 @@ namespace Reservation.Application.Features.Companies.Handlers
             };
 
             var result = await _userManager.CreateAsync(user, dto.AdminPassword);
+
+
+            //var staffMember = new StaffMember()
+            //{
+            //    Id = user.Id,
+            //    FullName = dto.AdminFullName,
+                
+            //};
+
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description).ToList();

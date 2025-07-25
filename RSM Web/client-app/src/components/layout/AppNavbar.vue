@@ -31,39 +31,46 @@
           </li>
         </ul>
 
-        <!-- Rezervasiya / Kabinet / Profil -->
-        <div class="d-flex align-items-center gap-3 ms-4 me-4">
-          <router-link v-if="authStore.isAuthenticated && authStore.user?.role === 'Customer'" to="/reserve"
-            class="btn btn-primary btn-sm">
-            Rezervasiya et
-          </router-link>
+        <div class="d-flex align-items-center gap-3 ms-4 me-6">
 
-          <router-link v-if="authStore.isAuthenticated && authStore.user?.role !== 'Customer'" to="/"
-            class="btn btn-primary btn-sm rounded-4 p-2">
-            Kabinet
-          </router-link>
+          <div>
+            <router-link v-if="authStore.isAuthenticated && authStore.user?.role === 'Customer'" to="/reserve"
+              class="btn-auth btn-profile">
+              Rezervasiya et
+              <i class="bi bi-calendar-check reserve-icon"></i>
+            </router-link>
 
-          <router-link v-if="authStore.isAuthenticated && authStore.user?.role === 'Customer'" to="/profile"
-            class="btn btn-outline-primary btn-sm rounded-4 p-2">
-            Profil
-          </router-link>
-        </div>
+            <router-link v-if="authStore.isAuthenticated && authStore.user?.role !== 'Customer'" to="/dashboard"
+              class="btn-auth btn-profile">
+              Kabinet
+              <i class="bi bi-speedometer2 cabinet-icon"></i>
+            </router-link>
 
-        <!-- Auth düymələri -->
-        <div class="d-flex align-items-center gap-2">
-          <router-link v-if="!authStore.isAuthenticated" to="/login" class="btn-auth btn-login">
-            Giriş
-            <i class="bi bi-box-arrow-in-right login-icon"></i>
-          </router-link>
+            <router-link v-if="authStore.isAuthenticated && authStore.user?.role === 'Customer'" to="/profile"
+              class="btn-auth btn-profile">
+              Profil
+              <i class="bi bi-person-circle profile-icon"></i>
+            </router-link>
+          </div>
 
-          <router-link v-if="!authStore.isAuthenticated" to="/register" class="btn-auth btn-register">
-            Qeydiyyat
-            <i class="bi bi-pencil-square register-icon"></i>
-          </router-link>
+          <!-- Auth düymələri -->
+          <div class="d-flex align-items-center gap-2">
+            <router-link v-if="!authStore.isAuthenticated" to="/login" class="btn-auth btn-login">
+              Giriş
+              <i class="bi bi-box-arrow-in-right login-icon"></i>
+            </router-link>
 
-          <button v-if="authStore.isAuthenticated" @click="logout" class="btn btn-outline-danger btn-sm rounded-4 p-2">
-            Çıxış
-          </button>
+            <router-link v-if="!authStore.isAuthenticated" to="/register" class="btn-auth btn-register">
+              Qeydiyyat
+              <i class="bi bi-pencil-square register-icon"></i>
+            </router-link>
+
+            <button v-if="authStore.isAuthenticated" @click="logout" class="btn-auth btn-logout">
+              Çıxış
+              <i class="bi bi-box-arrow-right logout-icon"></i>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -82,7 +89,7 @@
             Rezervasiya et
           </router-link>
 
-          <router-link v-if="authStore.isAuthenticated && authStore.user?.role !== 'Customer'" to="/"
+          <router-link v-if="authStore.isAuthenticated && authStore.user?.role !== 'Customer'" to="/dashboard"
             class="btn btn-primary btn-sm" @click="closeMenu">
             Kabinet
           </router-link>
@@ -92,7 +99,7 @@
             Profil
           </router-link>
 
-          <div class="auth-buttons-mobile d-flex flex-row gap-2">
+          <div class="auth-buttons-mobile d-flex flex-row gap-2" v-if="!authStore.isAuthenticated">
             <router-link to="/login" class="btn-auth btn-sm" @click="closeMenu">Giriş</router-link>
             <router-link to="/register" class="btn-auth btn-sm" @click="closeMenu">Qeydiyyat</router-link>
           </div>
@@ -257,6 +264,7 @@ const logout = () => {
   padding: 0.45rem 1rem;
   font-size: 0.95rem;
   border-radius: 12px;
+  gap: 0.6rem;
   background: rgba(255, 255, 255, 0.15);
   /* Şüşə hissi */
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -273,9 +281,9 @@ const logout = () => {
 
 .btn-auth:hover {
   background: rgba(13, 110, 253, 0.08);
-  color: #0d6efd; 
-  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.1); 
-  transform: none; 
+  color: #0d6efd;
+  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.1);
+  transform: none;
 }
 
 .auth-buttons-mobile {
@@ -284,18 +292,61 @@ const logout = () => {
   margin-top: 0.5rem;
 }
 
+.btn-profile,
+.btn-logout {
+  padding: 0.45rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #0d6efd;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.08);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.btn-profile:hover,
+.btn-logout:hover {
+  background: rgba(13, 110, 253, 0.08);
+  color: #0d6efd;
+  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.1);
+  transform: none;
+}
+
+.profile-icon,
+.logout-icon {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 1rem;
+  color: #0d6efd;
+}
+
+.btn-profile:hover .profile-icon,
+.btn-logout:hover .logout-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 @media (max-width: 576px) {
-  .btn-auth {
+
+  .btn-authç .btn-profile,
+  .btn-logout {
     padding: 0.4rem 1rem;
     font-size: 0.85rem;
     border-radius: 10px;
   }
 
-  .login-icon {
-    display: none;
-  }
-
-  .register-icon {
+  .login-icon,
+  .register-icon,
+  .profile-icon,
+  .logout-icon {
     display: none;
   }
 }
@@ -322,5 +373,4 @@ const logout = () => {
   align-items: center;
   gap: 0.35rem;
 }
-
 </style>

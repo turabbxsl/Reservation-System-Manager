@@ -22,6 +22,8 @@ namespace Reservation.Persistence.Context
         public DbSet<StaffMember> StaffMembers => Set<StaffMember>();
         public DbSet<Specialty> Specialties => Set<Specialty>();
         public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<StaffMemberService> StaffMemberServices => Set<StaffMemberService>();
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,10 +85,9 @@ namespace Reservation.Persistence.Context
 
                 entity.HasOne(x => x.Customer)
                     .WithMany(z => z.Reservations)
-                    .HasForeignKey(x=>x.CustomerId)
+                    .HasForeignKey(x => x.CustomerId)
                     .OnDelete(DeleteBehavior.SetNull);
             });
-
 
             modelBuilder.Entity<Service>(entity =>
             {
@@ -124,7 +125,6 @@ namespace Reservation.Persistence.Context
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-
             modelBuilder.Entity<Specialty>(entity =>
             {
                 entity.HasKey(x => x.Id);
@@ -133,15 +133,15 @@ namespace Reservation.Persistence.Context
                     .IsRequired()
                     .HasMaxLength(100);
 
-                entity.Property(x => x.CompanyType)
-                    .IsRequired();
-
                 entity.HasMany(x => x.StaffMembers)
                     .WithOne(sm => sm.Specialty)
                     .HasForeignKey(sm => sm.SpecialtyId)
                     .OnDelete(DeleteBehavior.Restrict);
-            });
 
+                entity.HasOne(x => x.Company)
+                .WithMany(y => y.Specialties)
+                .HasForeignKey(z => z.CompanyId);
+            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -161,8 +161,22 @@ namespace Reservation.Persistence.Context
                 entity.Property(x => x.Note)
                       .HasMaxLength(500);
             });
-        }
 
+            modelBuilder.Entity<StaffMemberService>(entity =>
+            {
+                entity.HasKey(x => new { x.StaffMemberId, x.ServiceId });
+
+                entity.HasOne(x => x.StaffMember)
+                      .WithMany(sm => sm.StaffMemberServices)
+                      .HasForeignKey(x => x.StaffMemberId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(x => x.Service)
+                      .WithMany(s => s.StaffMemberServices)
+                      .HasForeignKey(x => x.ServiceId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
 
     }
 }

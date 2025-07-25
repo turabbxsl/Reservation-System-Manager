@@ -8,6 +8,7 @@
         IServiceRepository Services { get; }
         ISpecialityRepository Specialities { get; }
         IStaffMemberRepository StaffMembers{ get; }
+        IUserRepository Users { get; }
 
         Task<int> SaveChangesAsync();
     }

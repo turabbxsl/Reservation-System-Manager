@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Reservation.Application.Interfaces;
+using Reservation.Domain.Entities;
 using Reservation.Persistence.Context;
 using System.Linq.Expressions;
 
@@ -19,6 +20,14 @@ namespace Reservation.Persistence.Repositories
         #region Get
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate) => await _dbSet.Where(predicate).ToListAsync();
+
+        public async Task<List<Service>> FindWithIncludeAsync(Expression<Func<Service, bool>> predicate)
+        {
+            return await _context.Services
+                .Include(s => s.Specialty)
+                .Where(predicate)
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 

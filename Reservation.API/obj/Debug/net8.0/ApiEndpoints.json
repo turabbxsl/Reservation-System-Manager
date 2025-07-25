@@ -114,5 +114,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "GetUsersByCompanyId",
+    "RelativePath": "api/Users/{companyId}/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

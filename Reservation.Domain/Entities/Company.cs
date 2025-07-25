@@ -53,6 +53,12 @@ namespace Reservation.Domain.Entities
         public ICollection<Reservation> Reservations { get; set; }
 
 
+        /// <summary>
+        /// Saheleri
+        /// </summary>
+        public ICollection<Specialty> Specialties { get; set; }
+
+
         public Company()
         {
             Users = new List<User>();
@@ -60,6 +66,7 @@ namespace Reservation.Domain.Entities
             StaffMembers = new List<StaffMember>();
             CompanyReviews = new List<CompanyReview>();
             Reservations = new List<Reservation>();
+            Specialties = new List<Specialty>();
         }
 
     }
