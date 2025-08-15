@@ -559,7 +559,6 @@ C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.AssemblyInfoInputs.cache
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.AssemblyInfo.cs
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.csproj.CoreCompileInputs.cache
-C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.sourcelink.json
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\staticwebassets.build.json
@@ -577,3 +576,6 @@ C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.genruntimeconfig.cache
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\ref\Reservation.API.dll
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\obj\Debug\net8.0\Reservation.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.API\bin\Debug\net8.0\AutoMapper.dll

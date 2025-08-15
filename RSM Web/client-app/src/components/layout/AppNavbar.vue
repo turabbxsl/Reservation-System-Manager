@@ -247,7 +247,7 @@ const logout = () => {
 
 .slide-enter-from,
 .slide-leave-to {
-  transform: translateY(-20px);
+  transform: translateX(20px);
   opacity: 0;
 }
 

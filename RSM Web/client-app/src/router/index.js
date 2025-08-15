@@ -9,7 +9,6 @@ import { useAuthStore } from '@/stores/authStore'
 import ReservePage from '@/pages/ReservePage.vue'
 import DashReservations from '@/pages/dashboard/DashReservations.vue'
 import DashboardHome from '@/pages/dashboard/DashboardHome.vue'
-import DashSpec from '@/pages/dashboard/DashSpec.vue'
 import DashServices from '@/pages/dashboard/DashServices.vue'
 import DashUsers from '@/pages/dashboard/DashUsers.vue'
 
@@ -43,7 +42,6 @@ const routes = [
     children: [
       { path: 'home', name: 'DashboardHome', component: DashboardHome, meta: { requiresAuth: true } },
       { path: 'reservations', name: 'DashReservation', component: DashReservations, meta: { requiresAuth: true } },
-      { path: 'specialities', name: 'DashSpec', component: DashSpec, meta: { requiresAuth: true } },
       { path: 'services', name: 'DashServices', component: DashServices, meta: { requiresAuth: true } },
       { path: 'users', name: 'DashUsers', component: DashUsers, meta: { requiresAuth: true } },
     ],

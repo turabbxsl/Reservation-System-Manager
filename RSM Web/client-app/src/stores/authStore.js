@@ -9,6 +9,12 @@ export const useAuthStore = defineStore('auth', {
   }),
   getters: {
     isAuthenticated: (state) => !!state.token,
+    companyId: (state) => state.user?.companyId,
+    role: (state) => state.user?.role,
+    isAdmin: (state) => state.user?.role === 'CompanyAdmin',
+    isUser: (state) => state.user?.role === 'Customer',
+    isCompanyUser: (state) => state.user?.role === 'CompanyUser',
+    isCompanySupervisor: (state) => state.user?.role === 'CompanySupervisor'
   },
   actions: {
     login(userData) {
@@ -28,6 +34,10 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('token')
 
       delete axios.defaults.headers.common['Authorization']
+    },
+    updateUser(updatedUser) {
+      this.user = updatedUser
+      localStorage.setItem('user', JSON.stringify(updatedUser))
     }
   }
 })

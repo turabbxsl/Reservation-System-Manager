@@ -33,3 +33,7 @@ C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\obj\Debug\net8.0\refint\Reservation.Shared.dll
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.pdb
 C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\obj\Debug\net8.0\ref\Reservation.Shared.dll
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\bin\Debug\net8.0\Reservation.Domain.dll
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\bin\Debug\net8.0\Reservation.Domain.pdb
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\obj\Debug\net8.0\Reservation.Shared.csproj.AssemblyReference.cache
+C:\Users\t.bakhishli\Desktop\Reservation\Reservation-System-Manager\Reservation.Shared\obj\Debug\net8.0\Reservat.4FFBA19E.Up2Date

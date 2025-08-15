@@ -8,12 +8,13 @@ namespace Reservation.Persistence.Repositories
     {
         public ReservationRepository(ReservationDbContext context) : base(context) { }
 
-        public async Task<int> ExistAsync(Guid companyId, Guid serviceId, DateTime dateTime)
+        public async Task<int> ExistAsync(Guid companyId, Guid specId, DateTime dateTime)
         {
             var res = await _context.Reservations
                                 .Where(r => r.CompanyId == companyId &&
-                                     r.ServiceId == serviceId &&
-                                     r.ReservationTime == dateTime)
+                                     r.SpecialtyId == specId &&
+                                     r.ReservationTime == dateTime &&
+                                     r.Status != Domain.Enums.ReservationStatus.Approved)
                                 .CountAsync();
            
 

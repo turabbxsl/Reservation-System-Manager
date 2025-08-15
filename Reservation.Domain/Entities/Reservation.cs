@@ -3,11 +3,13 @@ using Reservation.Domain.Enums;
 
 namespace Reservation.Domain.Entities
 {
-    public class Reservation:BaseEntity
+    public class Reservation : BaseEntity
     {
         public string Title { get; set; } = null!;
 
         public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+
+        public int ReservationNumer { get; set; }
 
         public Guid CompanyId { get; set; }
         public Company Company { get; set; } = null!;
@@ -15,9 +17,7 @@ namespace Reservation.Domain.Entities
         /// <summary>
         /// Reservasiya vaxtı - istifadəçinin seçdiyi vaxt (CreatedAt deyil)
         /// </summary>
-        public DateTime ReservationTime { get; set; } 
-/*        public string CustomerName { get; set; } = null!;
-        public string CustomerPhone { get; set; } = null!;*/
+        public DateTime ReservationTime { get; set; }
 
         /// <summary>
         /// Həkim / Berber / Usta
@@ -35,8 +35,8 @@ namespace Reservation.Domain.Entities
         /// <summary>
         /// Göstərilən xidmət
         /// </summary>
-        public Guid ServiceId { get; set; }
-        public Service Service { get; set; } = null!;
+        public Guid SpecialtyId { get; set; }
+        public Specialty Specialty { get; set; } = null!;
 
 
         /// <summary>
@@ -44,6 +44,15 @@ namespace Reservation.Domain.Entities
         /// </summary>
         public Guid? CustomerId { get; set; }
         public Customer? Customer { get; set; }
+
+
+        public ICollection<ReservationSpecService> ReservationSpecServices { get; set; }
+
+       
+        public Reservation()
+        {
+            ReservationSpecServices = new List<ReservationSpecService>();
+        }
 
     }
 }

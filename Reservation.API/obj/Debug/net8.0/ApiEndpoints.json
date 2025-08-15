@@ -59,6 +59,59 @@
   },
   {
     "ContainingType": "Reservation.API.Controllers.CustomerController",
+    "Method": "UpdatePassword",
+    "RelativePath": "api/Customer/cancel-reservation",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Reservations.Dtos.ChangeStatusCommandDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.CustomerController",
+    "Method": "CustomerDetails",
+    "RelativePath": "api/Customer/details/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.CustomerController",
+    "Method": "Edit",
+    "RelativePath": "api/Customer/edit/{customerId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Customers.Dtos.UpdateCustomerCommandDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.CustomerController",
     "Method": "Register",
     "RelativePath": "api/Customer/register",
     "HttpMethod": "POST",
@@ -68,6 +121,43 @@
       {
         "Name": "dto",
         "Type": "Reservation.Application.Features.Customers.Dtos.RegisterCustomerDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.CustomerController",
+    "Method": "CustomerReservation",
+    "RelativePath": "api/Customer/reservations/{customerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.CustomerController",
+    "Method": "UpdatePassword",
+    "RelativePath": "api/Customer/update-password/{customerId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "customerId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Customers.Dtos.UpdatePasswordCommandDto",
         "IsRequired": true
       }
     ],
@@ -87,7 +177,7 @@
         "IsRequired": false
       },
       {
-        "Name": "serviceId",
+        "Name": "specialtyId",
         "Type": "System.Guid",
         "IsRequired": false
       },
@@ -116,6 +206,212 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "GetSpecialtiesByCompanyId",
+    "RelativePath": "api/Specialties/{companyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "DeleteSpecialty",
+    "RelativePath": "api/Specialties/{companyId}/{companySpecialtyId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "companySpecialtyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "GetByCompanyType",
+    "RelativePath": "api/Specialties/by-company-type/{companyTypeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyTypeId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "GetBySpecialty",
+    "RelativePath": "api/Specialties/by-specialty/{companyId}/{specialtyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "AddSpecialtyWithServices",
+    "RelativePath": "api/Specialties/create-with-services",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Services.Dtos.AddSpecialtyWithServicesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "DeleteServiceForSpecialty",
+    "RelativePath": "api/Specialties/delete-service/{companyId}/{serviceId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "serviceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "GetDetailsBySpecialty",
+    "RelativePath": "api/Specialties/details-by-specialty/{companyId}/{specialtyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "AddInSpecialtyWithServices",
+    "RelativePath": "api/Specialties/inspeciality-create-services",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Services.Dtos.AddServicesInSpecialtyDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "UpdateInSpecialtyWithService",
+    "RelativePath": "api/Specialties/update-inspecialty-service",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Reservation.Application.Features.Services.Dtos.UpdateInSpecialtyServiceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "UpdateSpecialty",
+    "RelativePath": "api/Specialties/update-specialty",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Reservation.Application.Features.Services.Dtos.UpdateSpecialityDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "UpdateStaffMember",
+    "RelativePath": "api/Users/{companyId}/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Reservation.Application.Features.Users.Dtos.UpdateStaffMemberDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Reservation.API.Controllers.UsersController",
     "Method": "GetUsersByCompanyId",
     "RelativePath": "api/Users/{companyId}/users",
@@ -126,6 +422,132 @@
       {
         "Name": "companyId",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "Create",
+    "RelativePath": "api/Users/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Reservation.Application.Features.Users.Commands.CreateStaffMemberCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "DeleteStaffMember",
+    "RelativePath": "api/Users/staffmembers/{companyId}/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "DeleteServiceStaffMember",
+    "RelativePath": "api/Users/staffmembers/{userId}/services/{serviceId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "serviceId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "DeleteSpeciatyStaffMember",
+    "RelativePath": "api/Users/staffmembers/{userId}/specialties/{specialtyId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "AddServices",
+    "RelativePath": "api/Users/users/{userId}/{specialtyId}/services/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "serviceIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.UsersController",
+    "Method": "AddSpecialities",
+    "RelativePath": "api/Users/users/{userId}/specialties/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyIds",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],

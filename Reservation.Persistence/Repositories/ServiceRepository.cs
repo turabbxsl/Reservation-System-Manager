@@ -5,10 +5,23 @@ using Reservation.Persistence.Context;
 
 namespace Reservation.Persistence.Repositories
 {
-    public class ServiceRepository: GenericRepository<Service>, IServiceRepository
+    public class ServiceRepository : GenericRepository<Service>, IServiceRepository
     {
         public ServiceRepository(ReservationDbContext context) : base(context) { }
 
-        public Task<List<Service>> GetServicesByCompanyId(Guid companyId) => _context.Services.Where(x => x.CompanyId == companyId).ToListAsync();
+        public async Task<List<Service>> GetBySpecialtyId(Guid specialtyId)
+        {
+            return await _context.Services
+        .Where(s => s.SpecialtyId == specialtyId && !s.IsDeleted)
+        .ToListAsync();
+        }
+
+        public Task<List<Service>> GetServicesByCompanyId(Guid companyId)
+        {
+            return _context.CompaniesServices
+                .Where(cs => cs.CompanyId == companyId && cs.Service.IsDeleted == false)
+                .Select(cs => cs.Service)
+                .ToListAsync();
+        }
     }
 }

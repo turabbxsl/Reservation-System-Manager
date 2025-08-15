@@ -1,4 +1,5 @@
 ﻿using Reservation.Domain.Base;
+using Reservation.Domain.Enums;
 
 namespace Reservation.Domain.Entities
 {
@@ -33,11 +34,15 @@ namespace Reservation.Domain.Entities
         public string? Description { get; set; }
 
 
-        /// <summary>
-        /// Hansi şirkətə aiddir
-        /// </summary>
-        public Guid CompanyId { get; set; }
-        public Company Company { get; set; }
+        public CompanyType? CompanyType { get; set; }
+        public int? SpecialityType { get; set; }
+
+
+        ///// <summary>
+        ///// Hansi şirkətə aiddir
+        ///// </summary>
+        //public Guid CompanyId { get; set; }
+        //public Company Company { get; set; }
 
         /// <summary>
         /// Xidmət hansı ixtisasa aiddir
@@ -48,15 +53,22 @@ namespace Reservation.Domain.Entities
         public Guid? SpecialtyId { get; set; }
         public Specialty? Specialty { get; set; }
 
-        public ICollection<Reservation> Reservations { get; set; }
+        /* public ICollection<Reservation> Reservations { get; set; }*/
 
         public ICollection<StaffMemberService> StaffMemberServices { get; set; }
+
+        public ICollection<ReservationSpecService> ReservationSpecServices { get; set; }
+
+        public ICollection<CompanyService> CompanyServices { get; set; }
 
 
         public Service()
         {
-            Reservations = new List<Reservation>();
+            /*            Reservations = new List<Reservation>();
+            */
             StaffMemberServices = new List<StaffMemberService>();
+            ReservationSpecServices = new List<ReservationSpecService>();
+            CompanyServices = new List<CompanyService>();
         }
     }
 }

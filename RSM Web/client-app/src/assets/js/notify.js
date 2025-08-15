@@ -15,7 +15,10 @@ export default function notify(type, message, title = '') {
     notification.style.color = '#fff';
     notification.style.fontSize = '14px';
     notification.style.zIndex = 9999;
-    notification.style.backgroundColor = type === 'success' ? 'green' : 'red';
+    notification.style.backgroundColor =
+        type === 'success' ? 'green' :
+            type === 'warning' ? 'orange' :
+                'red';
     notification.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2)';
     notification.style.maxWidth = '300px';
     notification.style.wordWrap = 'break-word';

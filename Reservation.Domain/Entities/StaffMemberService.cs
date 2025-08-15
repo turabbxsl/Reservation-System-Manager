@@ -9,5 +9,8 @@ namespace Reservation.Domain.Entities
 
         public Guid ServiceId { get; set; }
         public Service Service { get; set; }
+
+        public Guid SpecialtyID { get; set; }
+        public Specialty Specialty { get; set; }
     }
 }

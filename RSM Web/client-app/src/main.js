@@ -7,15 +7,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import { VueMaskDirective } from 'v-mask';
+
 import notify from './assets/js/notify.js';
 
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
+import 'primeicons/primeicons.css';
+
+import ConfirmationService from 'primevue/confirmationservice'
 
 const app = createApp(App);
 
-app.directive('mask', VueMaskDirective);
 app.config.globalProperties.$notify = notify;
 
 app.use(createPinia());
@@ -31,4 +33,7 @@ app.use(PrimeVue, {
         }
     }
 });
+
+app.use(ConfirmationService);
+
 app.mount('#app');

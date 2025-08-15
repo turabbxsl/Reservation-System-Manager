@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "xmjksckDTZk=",
+  "dgSpecHash": "vaDRzQkpzOs=",
   "success": true,
   "projectFilePath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Reservation.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\t.bakhishli\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
     "C:\\Users\\t.bakhishli\\.nuget\\packages\\fluentvalidation\\12.0.0\\fluentvalidation.12.0.0.nupkg.sha512",
+    "C:\\Users\\t.bakhishli\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.0.0\\fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "C:\\Users\\t.bakhishli\\.nuget\\packages\\mediatr\\13.0.0\\mediatr.13.0.0.nupkg.sha512",
     "C:\\Users\\t.bakhishli\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\t.bakhishli\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",

@@ -32,67 +32,77 @@ namespace Reservation.Application.Services
 
         public async Task<ResponseDto<LoginVM>> AuthenticateAsync(string email, string password)
         {
-            string role = string.Empty;
-
-            var users = _userManager.Users.ToList();
-            var user = await _userManager.Users
-                                         .Include(u => u.Company)
-                                         .FirstOrDefaultAsync(u => u.Email == email);
-
-            if (user != null)
+            try
             {
-                var checkPass = await _signInManager.CheckPasswordSignInAsync(user, password, false);
-                if (checkPass.Succeeded)
+                string role = string.Empty;
+
+                var users = _userManager.Users.ToList();
+                var user = await _userManager.Users
+                                             .Include(u => u.Company)
+                                             .FirstOrDefaultAsync(u => u.Email == email);
+
+                if (user != null)
                 {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    role = roles.FirstOrDefault() ?? "CompanyUser";
-
-                    if (!await _roleManager.RoleExistsAsync(role))
-                        await _roleManager.CreateAsync(new IdentityRole<Guid>(role));
-
-                    var loginVm = new LoginVM
+                    var checkPass = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+                    if (checkPass.Succeeded)
                     {
-                        Id = user.Id,
-                        Email = user.Email,
-                        FullName = user.FullName,
-                        CompanyName = user.Company?.Name,
-                        CompanyId = user.Company?.Id,
-                        Role = role,
-                        Token = _passwordService.GenerateJwtToken(user.Email!, role, _configuration)
-                    };
+                        var roles = await _userManager.GetRolesAsync(user);
+                        role = roles.FirstOrDefault() ?? "CompanyUser";
 
-                    return ResponseDto<LoginVM>.SuccessResponse(loginVm, "Giriş uğurla tamamlandı", 200);
+                        if (!await _roleManager.RoleExistsAsync(role))
+                            await _roleManager.CreateAsync(new IdentityRole<Guid>(role));
+
+                        var loginVm = new LoginVM
+                        {
+                            Id = user.Id,
+                            Email = user.Email,
+                            FullName = user.FullName,
+                            CompanyName = user.Company?.Name,
+                            CompanyId = user.Company?.Id,
+                            CompanyType = user.Company?.Type,
+                            Role = role,
+                            Token = _passwordService.GenerateJwtToken(user.Email!, role, _configuration)
+                        };
+
+                        return ResponseDto<LoginVM>.SuccessResponse(loginVm, "Giriş uğurla tamamlandı", 200);
+                    }
+
+                    return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 200);
                 }
 
-                return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 200);
-            }
-
-            var customer = await _unitOfWork.Customers.GetByEmailAsync(email);
-            if (customer != null)
-            {
-                if (!await _roleManager.RoleExistsAsync("Customer"))
-                    await _roleManager.CreateAsync(new IdentityRole<Guid>("Customer"));
-                role = "Customer";
-
-                var isCheckPass = _passwordService.Decrypt(customer.PasswordHash) == password;
-                if (isCheckPass)
+                var customer = await _unitOfWork.Customers.GetByEmailAsync(email);
+                if (customer != null)
                 {
-                    var loginVm = new LoginVM
-                    {
-                        Id = customer.Id,
-                        Email = customer.Email,
-                        FullName = customer.FullName,
-                        Role = role,
-                        Token = _passwordService.GenerateJwtToken(customer.Email!, role, _configuration)
-                    };
+                    if (!await _roleManager.RoleExistsAsync("Customer"))
+                        await _roleManager.CreateAsync(new IdentityRole<Guid>("Customer"));
+                    role = "Customer";
 
-                    return ResponseDto<LoginVM>.SuccessResponse(loginVm, "Müştəri kimi giriş edildi", 200);
+                    var isCheckPass = _passwordService.Decrypt(customer.PasswordHash) == password;
+                    if (isCheckPass)
+                    {
+                        var loginVm = new LoginVM
+                        {
+                            Id = customer.Id,
+                            Email = customer.Email,
+                            FullName = customer.FullName,
+                            Role = role,
+                            Token = _passwordService.GenerateJwtToken(customer.Email!, role, _configuration)
+                        };
+
+                        return ResponseDto<LoginVM>.SuccessResponse(loginVm, "Müştəri kimi giriş edildi", 200);
+                    }
+
+                    return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 200);
                 }
 
-                return ResponseDto<LoginVM>.ErrorResponse("Şifrə yanlışdır", 200);
+                return ResponseDto<LoginVM>.ErrorResponse("Bu email ilə istifadəçi tapılmadı", 200);
             }
-
-            return ResponseDto<LoginVM>.ErrorResponse("Bu email ilə istifadəçi tapılmadı", 200);
+            catch (Exception ex)
+            {
+                return ResponseDto<LoginVM>.ErrorResponse($"Server xətası -> {ex.InnerException.Message}", 200);
+            }
+            
+           
         }
 
 

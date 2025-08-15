@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Reservation.Application.Features.Reservations.Commands;
 using Reservation.Application.Interfaces;
+using Reservation.Domain.Entities;
 using Reservation.Shared.BaseResponse;
 using System.Globalization;
 
@@ -31,25 +32,45 @@ namespace Reservation.Application.Features.Reservations.Handlers
 
                 var reservationDateTime = date.Date + time;
 
+                var existCustReserv = await _unitofWork.Reservations.FindAsync(
+                    x => x.CustomerId == dto.CustomerId && x.SpecialtyId == dto.SelectedSpecId && x.CompanyId == dto.CompanyId/* && x.ReservationTime==reservationDateTime*/
+                    );
+                if (existCustReserv.ToList()?.Count > 0)
+                    return ResponseDto<Guid>.ErrorResponse(new List<string>() { $"Eyni şirkətə eyni xidmət gündə yalnız bir rezervasiya edə bilərsiniz" },200);
+
                 var reservation = new Reservation.Domain.Entities.Reservation()
                 {
                     Id = Guid.NewGuid(),
                     CompanyId = dto.CompanyId,
-                    ServiceId = dto.ServiceId,
+                    SpecialtyId = dto.SelectedSpecId,
                     CustomerId = dto.CustomerId,
                     ReservationTime = reservationDateTime,
                     CreatedAt = DateTime.UtcNow
                 };
 
                 await _unitofWork.Reservations.AddAsync(reservation);
+
+                foreach (var service in dto.SelectedServices)
+                {
+                    var reservationService = new ReservationSpecService()
+                    {
+                        Id = Guid.NewGuid(),
+                        SpecialtyId = dto.SelectedSpecId,
+                        ReservationId = reservation.Id,
+                        ServiceId = service
+                    };
+
+                    await _unitofWork.ReservationSpecService.AddAsync(reservationService);
+                }
+
+
                 await _unitofWork.SaveChangesAsync();
 
                 return ResponseDto<Guid>.SuccessResponse(reservation.Id, "Reservasiya yaradıldı", 201);
             }
             catch (Exception ex)
             {
-                return ResponseDto<Guid>.ErrorResponse(new List<string>() {ex.InnerException?.Message },"Gözlənilməz xəta", 200);
-
+                return ResponseDto<Guid>.ErrorResponse(new List<string>() { ex.InnerException?.Message }, "Gözlənilməz xəta", 200);
             }
 
         }

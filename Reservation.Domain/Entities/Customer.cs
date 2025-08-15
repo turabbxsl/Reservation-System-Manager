@@ -6,6 +6,8 @@ namespace Reservation.Domain.Entities
     public class Customer : BaseEntity
     {
 
+        public int ClientCode{ get; set; }
+
         [Required]
         public string FullName { get; set; } = null!;
 
@@ -21,6 +23,10 @@ namespace Reservation.Domain.Entities
         public string PasswordHash { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
+
+        public bool IsSms { get; set; }
+
+        public bool IsEmail { get; set; }
 
         public Customer()
         {

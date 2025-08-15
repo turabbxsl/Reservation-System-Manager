@@ -29,12 +29,12 @@ namespace Reservation.API.Controllers
         }
 
         [HttpGet("available-times")]
-        public async Task<IActionResult> GetAvailableTimes([FromQuery] Guid companyId, [FromQuery] Guid serviceId, [FromQuery] string date)
+        public async Task<IActionResult> GetAvailableTimes([FromQuery] Guid companyId, [FromQuery] Guid specialtyId, [FromQuery] string date)
         {
             var result = await _mediator.Send(new GetAvailableReservationTimesQuery
             {
                 CompanyId = companyId,
-                ServiceId = serviceId,
+                SpecialtyId = specialtyId,
                 Date = DateTime.Parse(date)
             });
 

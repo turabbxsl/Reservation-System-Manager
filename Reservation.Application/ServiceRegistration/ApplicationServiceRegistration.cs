@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using Reservation.Application.Behaviours;
+using Reservation.Application.Features.Users.Validators;
 using Reservation.Application.Interfaces.Services;
 using Reservation.Application.Services;
 using System.Reflection;
@@ -14,6 +18,11 @@ namespace Reservation.Application.ServiceRegistration
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPasswordService, PasswordService>();
+
+            services.AddValidatorsFromAssembly(typeof(CreateStaffMemberCommandValidator).Assembly);
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+
+            services.AddAutoMapper(_ => { }, Assembly.GetExecutingAssembly());
 
             return services;
         }

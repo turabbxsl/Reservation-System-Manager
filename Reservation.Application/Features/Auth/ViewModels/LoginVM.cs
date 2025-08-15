@@ -1,4 +1,6 @@
-﻿namespace Reservation.Application.Features.Auth.ViewModels
+﻿using Reservation.Domain.Enums;
+
+namespace Reservation.Application.Features.Auth.ViewModels
 {
     public class LoginVM
     {
@@ -14,5 +16,6 @@
 
         public string? CompanyName { get; set; }
         public Guid? CompanyId { get; set; }
+        public CompanyType? CompanyType{ get; set; }
     }
 }

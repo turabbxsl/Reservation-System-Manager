@@ -4,6 +4,7 @@ using Reservation.Application.Features.Customers.Commands;
 using Reservation.Application.Interfaces;
 using Reservation.Application.Interfaces.Services;
 using Reservation.Domain.Entities;
+using Reservation.Infrastructure.Extensions;
 using Reservation.Shared.BaseResponse;
 
 namespace Reservation.Application.Features.Customers.Handlers

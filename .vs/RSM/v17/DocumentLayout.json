@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.application\\features\\users\\handlers\\getusersbycompanyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|solutionrelative:reservation.application\\features\\users\\handlers\\getusersbycompanyhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.application\\features\\reservations\\handlers\\getavailabletimesqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|solutionrelative:reservation.application\\features\\reservations\\handlers\\getavailabletimesqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10EBCB33-C2C9-4A10-932F-103F4554E30B}|Reservation.Persistence\\Reservation.Persistence.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.persistence\\repositories\\staffmemberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10EBCB33-C2C9-4A10-932F-103F4554E30B}|Reservation.Persistence\\Reservation.Persistence.csproj|solutionrelative:reservation.persistence\\repositories\\staffmemberrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.application\\features\\reservations\\handlers\\createreservationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|solutionrelative:reservation.application\\features\\reservations\\handlers\\createreservationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{10EBCB33-C2C9-4A10-932F-103F4554E30B}|Reservation.Persistence\\Reservation.Persistence.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.persistence\\context\\reservationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{10EBCB33-C2C9-4A10-932F-103F4554E30B}|Reservation.Persistence\\Reservation.Persistence.csproj|solutionrelative:reservation.persistence\\context\\reservationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.application\\features\\users\\handlers\\createstaffmemberhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F86E2B30-8747-4447-84A9-99A7039DBF94}|Reservation.Application\\Reservation.Application.csproj|solutionrelative:reservation.application\\features\\users\\handlers\\createstaffmemberhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A596DBE-641C-4F19-8653-0746F8DBAD18}|Reservation.API\\Reservation.API.csproj|c:\\users\\t.bakhishli\\desktop\\reservation\\reservation-system-manager\\reservation.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A596DBE-641C-4F19-8653-0746F8DBAD18}|Reservation.API\\Reservation.API.csproj|solutionrelative:reservation.api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,46 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "StaffMemberRepository.cs",
-              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Repositories\\StaffMemberRepository.cs",
-              "RelativeDocumentMoniker": "Reservation.Persistence\\Repositories\\StaffMemberRepository.cs",
-              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Repositories\\StaffMemberRepository.cs",
-              "RelativeToolTip": "Reservation.Persistence\\Repositories\\StaffMemberRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "Title": "CreateReservationHandler.cs",
+              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Reservations\\Handlers\\CreateReservationHandler.cs",
+              "RelativeDocumentMoniker": "Reservation.Application\\Features\\Reservations\\Handlers\\CreateReservationHandler.cs",
+              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Reservations\\Handlers\\CreateReservationHandler.cs",
+              "RelativeToolTip": "Reservation.Application\\Features\\Reservations\\Handlers\\CreateReservationHandler.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAC8AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T13:30:48.234Z",
+              "WhenOpened": "2025-08-14T12:02:38.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetAvailableTimesQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Reservations\\Handlers\\GetAvailableTimesQueryHandler.cs",
+              "RelativeDocumentMoniker": "Reservation.Application\\Features\\Reservations\\Handlers\\GetAvailableTimesQueryHandler.cs",
+              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Reservations\\Handlers\\GetAvailableTimesQueryHandler.cs",
+              "RelativeToolTip": "Reservation.Application\\Features\\Reservations\\Handlers\\GetAvailableTimesQueryHandler.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAIAwwEIAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-14T11:09:02.64Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ReservationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Context\\ReservationDbContext.cs",
-              "RelativeDocumentMoniker": "Reservation.Persistence\\Context\\ReservationDbContext.cs",
-              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Persistence\\Context\\ReservationDbContext.cs",
-              "RelativeToolTip": "Reservation.Persistence\\Context\\ReservationDbContext.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACMAAAAPAAAAAAAAAA==",
+              "Title": "CreateStaffMemberHandler.cs",
+              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Users\\Handlers\\CreateStaffMemberHandler.cs",
+              "RelativeDocumentMoniker": "Reservation.Application\\Features\\Users\\Handlers\\CreateStaffMemberHandler.cs",
+              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Users\\Handlers\\CreateStaffMemberHandler.cs",
+              "RelativeToolTip": "Reservation.Application\\Features\\Users\\Handlers\\CreateStaffMemberHandler.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAIAwwFEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T12:51:58.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-14T07:38:40.029Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetUsersByCompanyHandler.cs",
-              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Users\\Handlers\\GetUsersByCompanyHandler.cs",
-              "RelativeDocumentMoniker": "Reservation.Application\\Features\\Users\\Handlers\\GetUsersByCompanyHandler.cs",
-              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Application\\Features\\Users\\Handlers\\GetUsersByCompanyHandler.cs",
-              "RelativeToolTip": "Reservation.Application\\Features\\Users\\Handlers\\GetUsersByCompanyHandler.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAhwDQAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Reservation.API\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Reservation.API\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwDEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T07:45:28.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T06:56:03.699Z"
             }
           ]
         }

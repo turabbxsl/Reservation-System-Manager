@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Reservation.Application.Interfaces;
-using Reservation.Application.Interfaces.Services;
-using Reservation.Application.Services;
 using Reservation.Domain.Entities;
 using Reservation.Persistence.Configuration.Identity;
 using Reservation.Persistence.Context;
@@ -32,6 +30,7 @@ namespace Reservation.Persistence.ServiceRegistration
 
                 options.User.RequireUniqueEmail = false;
             })
+            .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<ReservationDbContext>()
             .AddErrorDescriber<CustomIdentityErrorDescriber>()
             .AddDefaultTokenProviders();

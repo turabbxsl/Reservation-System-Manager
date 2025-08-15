@@ -53,7 +53,15 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[15.0.1, )"
+            },
             "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[12.0.0, )"
             },
@@ -181,7 +189,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj": {
+                "projectPath": "C:\\Users\\t.bakhishli\\Desktop\\Reservation\\Reservation-System-Manager\\Reservation.Domain\\Reservation.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

@@ -16,3 +16,8 @@ export const getServicesByCompanyId = async (companyId) => {
     const response = await api.get(`${API_BASE}/${companyId}/services`);
     return response.data;
 };
+
+export const getSpecialtiesByCompanyId = async (companyId) => {
+    return api.get(`/Specialties/${companyId}`)
+        .then(res => res.data);
+};

@@ -29,7 +29,8 @@ namespace Reservation.API.Controllers
             var services = await _mediator.Send(new GetServicesByCompanyQuery(companyId));
             return Ok(services);
         }
-       
+
+
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterCompanyDto dto)

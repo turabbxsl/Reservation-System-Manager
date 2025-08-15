@@ -28,15 +28,9 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/dashboard/specialities" class="nav-link d-flex align-items-center">
-                            <i class="bi bi-person-vcard me-2"></i>
-                            <span>Sahələr</span>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
                         <router-link to="/dashboard/services" class="nav-link d-flex align-items-center">
                             <i class="bi bi-tools me-2"></i>
-                            <span>Xidmətlər</span>
+                            <span>Xidmət İdarəetməsi</span>
                         </router-link>
                     </li>
                     <li class="nav-item">

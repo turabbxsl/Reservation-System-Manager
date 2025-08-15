@@ -1,4 +1,4 @@
-﻿using Reservation.Domain.Entities;
+﻿using Reservation.Application.Features.Services.ViewModels;
 
 namespace Reservation.Application.Features.Users.ViewModels
 {
@@ -11,16 +11,27 @@ namespace Reservation.Application.Features.Users.ViewModels
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public List<Dictionary<Guid,string>> Services { get; set; }
-        public Dictionary<Guid,string> Speciality { get; set; }
-
+        public List<UserSpecialityVM> Specialities { get; set; }
 
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
+        public Dictionary<string, string> Role { get; set; }
+
+        public string Status { get; set; }
+
         public GetUsersByCompanyVM()
         {
-            Services = new List<Dictionary<Guid, string>>();
+            Specialities = new List<UserSpecialityVM>();
         }
     }
+
+    public class UserSpecialityVM
+    {
+        public Guid SpecialityId { get; set; }
+        public string SpecialityName { get; set; }
+
+        public List<ServiceVM> Services { get; set; }
+    }
+
 }

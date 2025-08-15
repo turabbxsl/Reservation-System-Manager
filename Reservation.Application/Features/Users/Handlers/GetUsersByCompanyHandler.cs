@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Reservation.Application.Features.Services.ViewModels;
 using Reservation.Application.Features.Users.Queries;
 using Reservation.Application.Features.Users.ViewModels;
 using Reservation.Application.Interfaces;
 using Reservation.Domain.Entities;
 using Reservation.Shared.BaseResponse;
-using System.Linq;
+using System.Data;
 
 namespace Reservation.Application.Features.Users.Handlers
 {
@@ -40,12 +41,28 @@ namespace Reservation.Application.Features.Users.Handlers
 
                     var staffMember = await _unitofWork.StaffMembers.GetByIdAsync(user.Id);
 
-                    var services = await _unitofWork.StaffMembers.GetServicesByStaffMemberIdAsync(staffMember.Id);
+                    var specialitiesDb = await _unitofWork.StaffMembersSpecialty.FindWithIncludeAsync(
+                        x => x.StaffMemberId == user.Id,
+                        query => query.Include(y => y.Specialty)
+                        );
+                    var resultSpec = specialitiesDb.ToList();
 
-                    var serviceList = services.Select(s => new Dictionary<Guid, string>
-                                                                {
-                                                                    { s.Id, s.Name }
-                                                                }).ToList();            
+                    var servicesDb = await _unitofWork.StaffMembersServices.FindWithIncludeAsync(
+                        x => x.StaffMemberId == user.Id,
+                        query => query.Include(y => y.Service));
+                    var resultServ = servicesDb.ToList();
+
+                    var roles = await _userManager.GetRolesAsync(userData);
+
+                    var roleMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+{
+    { "CompanyAdmin", "Admin" },
+    { "CompanyUser", "İstifadəçi" },
+    { "CompanySuperVisor", "Nəzarətçi" },
+};
+
+                    var roleKey = roles.FirstOrDefault() ?? string.Empty;
+
 
                     var userItem = new GetUsersByCompanyVM()
                     {
@@ -56,8 +73,24 @@ namespace Reservation.Application.Features.Users.Handlers
                         Username = userData.UserName,
                         CreatedDate = user.CreatedAt,
                         UpdateDate = user.UpdatedAt,
-                        Services = serviceList
-                        //Roles = roles?.Any() == true ? roles.ToList() : new List<string>()
+                        Specialities = resultSpec?.Select(x => new UserSpecialityVM()
+                        {
+                            SpecialityId = x.SpecialtyId,
+                            SpecialityName = x.Specialty.Name,
+                            Services = resultServ.Where(y => y.SpecialtyID == x.SpecialtyId).Select(s => new ServiceVM()
+                            {
+                                Id = s.ServiceId,
+                                Name = s.Service.Name,
+                                Price = s.Service.Price,
+                                Duration = s.Service.DurationInMinutes
+                            }).ToList()
+                        }).ToList(),
+                        Status = !user.IsDeleted ? "Aktiv" : "Deaktiv",
+                        Role = new Dictionary<string, string>
+                                            {
+                                                { "value", roleKey },
+                                                { "label", roleMap.TryGetValue(roleKey, out var label) ? label : "Təyin edilməyib" }
+                                            }
                     };
 
                     userList.Add(userItem);

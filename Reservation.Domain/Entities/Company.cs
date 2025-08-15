@@ -30,10 +30,10 @@ namespace Reservation.Domain.Entities
         /// </summary>
         public ICollection<User> Users { get; set; }
 
-        /// <summary>
-        /// Şirkətə aid xidmətlər
-        /// </summary>
-        public ICollection<Service> Services { get; set; }
+        ///// <summary>
+        ///// Şirkətə aid xidmətlər
+        ///// </summary>
+        //public ICollection<Service> Services { get; set; }
 
         /// <summary>
         /// İşçi heyəti (həkimlər, ustalar və s.)
@@ -56,17 +56,23 @@ namespace Reservation.Domain.Entities
         /// <summary>
         /// Saheleri
         /// </summary>
-        public ICollection<Specialty> Specialties { get; set; }
+        /*public ICollection<Specialty> Specialties { get; set; }*/
+
+        public ICollection<CompanySpecialty> CompanySpecialties { get; set; }
+
+        public ICollection<CompanyService> CompanyServices { get; set; }
 
 
         public Company()
         {
             Users = new List<User>();
-            Services = new List<Service>();
+            //Services = new List<Service>();
             StaffMembers = new List<StaffMember>();
             CompanyReviews = new List<CompanyReview>();
             Reservations = new List<Reservation>();
-            Specialties = new List<Specialty>();
+            /*            Specialties = new List<Specialty>();*/
+            CompanySpecialties = new List<CompanySpecialty>();
+            CompanyServices = new List<CompanyService>();
         }
 
     }

@@ -1,5 +1,4 @@
 <template>
-  <!-- Login 1 - Bootstrap Brain Component -->
   <div class="bg-light py-3 py-md-5">
     <div class="container">
       <div class="row justify-content-md-center">
@@ -91,7 +90,13 @@ export default {
           authStore.login(res.data);
 
           this.$notify('success', 'Uğurlu Giriş');
-          this.$router.push({ name: 'Profile' });
+          console.log(authStore.isAdmin, authStore.isUser, authStore.isCompanyUser, authStore.isCompanySupervisor);
+          if (authStore.isUser) {
+            this.$router.push('/profile');
+          } else {
+            this.$router.push('/dashboard/home');
+          }
+
         }
       } catch (err) {
         console.log('catch unexpecting error', err);
