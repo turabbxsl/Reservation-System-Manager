@@ -31,6 +31,22 @@
                     <InputText v-model="data[field]" fluid />
                 </template>
             </Column>
+            <Column field="restMinute" header="Fasilə müddəti" sortable>
+                <template #body="{ data, field }">
+                    {{ data[field] }} dəqiqə
+                </template>
+
+                <template #editor="{ data, field }">
+                    <InputText v-model="data[field]" fluid />
+                </template>
+            </Column>
+
+            <Column field="isActive" header="Bağlı / Açıq" sortable>
+                <template #body="{ data }">
+                    <InputSwitch v-model="data.isActive" @change="onSpecialtyStatusChange(data)" />
+                </template>
+            </Column>
+
             <Column :rowEditor="true" style="width: 11%; min-width: 8rem" bodyStyle="text-align:center">
                 <template #roweditoriniticon>
                     <span class="rowedit-btn edit-btn">Düzəliş et</span>
@@ -89,6 +105,11 @@
                                 <InputText v-model="data[field]" fluid />
                             </template>
                         </Column>
+                        <Column field="isActive" header="Bağlı / Açıq" sortable>
+                            <template #body="{ data }">
+                                <InputSwitch v-model="slotProps.data.isActive" @change="onServiceStatusChange(data)" />
+                            </template>
+                        </Column>
                         <Column :rowEditor="true" style="width: 11%; min-width: 8rem" bodyStyle="text-align:center">
                             <template #roweditoriniticon>
                                 <span class="rowedit-btn edit-btn">Düzəliş et</span>
@@ -107,6 +128,14 @@
                                     @click="selectedService = data; selectedSpecialty = slotProps.data; confirmDeleteSpecialtyService()" />
                             </template>
                         </Column>
+
+                        <template #empty>
+                            <div class="empty-footer">
+                                <i class="pi pi-info-circle"></i>
+                                <span>Kateqoriyanın xidmətləri boşdur</span>
+                            </div>
+                        </template>
+                        <template #loading> Məlumatlar yüklənir, gözləyin </template>
                     </DataTable>
                 </div>
             </template>
@@ -238,15 +267,16 @@ import Dialog from "primevue/dialog";
 import Dropdown from "primevue/dropdown";
 import InputNumber from "primevue/inputnumber"
 import InputText from "primevue/inputtext";
+import InputSwitch from "primevue/inputswitch";
 import { Chip } from "primevue";
 
 import ConfirmDialog from 'primevue/confirmdialog';
 
-import { getAllSpecialties, getServicesBySpecialty, deleteSpecialty, getSpecialtiesByCompanyType, saveSpecialtyWithServices, deleteSpecialtyService, saveInSpecialtyWithServices, updateSpeciality, updateInSpecialityService, getDetailsBySpecialty } from '@/services/specialtyService';
+import { getAllSpecialties, getServicesBySpecialty, deleteSpecialty, getSpecialtiesByCompanyType, saveSpecialtyWithServices, deleteSpecialtyService, saveInSpecialtyWithServices, updateSpeciality, updateInSpecialityService, getDetailsBySpecialty, updateIsActiveSpecialty } from '@/services/specialtyService';
 
 export default {
     name: "ServiceManagementPage",
-    components: { DataTable, Column, Button, ConfirmDialog, Dialog, Dropdown, Chip, InputNumber, InputText },
+    components: { DataTable, Column, Button, ConfirmDialog, Dialog, Dropdown, Chip, InputNumber, InputText, InputSwitch },
     data() {
         return {
             specialties: [],
@@ -542,7 +572,8 @@ export default {
 
             const payload = {
                 id: newData.specialtyId,
-                newSpecialityName: newData.name
+                newSpecialityName: newData.name,
+                restminute: newData.restMinute
             };
             try {
                 const res = await updateSpeciality(payload);
@@ -582,6 +613,38 @@ export default {
             this.selectedService = event.data;
             this.selectedSpecialty = specialty;
         },
+        async onSpecialtyStatusChange(specialty) {
+            try {
+                const specId = specialty.specialtyId;
+                // Update the specialty status
+                const res = await updateIsActiveSpecialty(specId);
+                const text = specialty.isActive ? 'aktiv' : 'deaktiv';
+
+                if (res.isSuccess) {
+                    this.$notify('success', `Xidmət kateqoriyası ${text} edildi`, '');
+                    await this.getSpecialties();
+                } else {
+                    res.errors.forEach(err => this.$notify('error', err, 'Status yenilənə bilmədi'));
+                }
+            } catch (error) {
+                this.$notify('error', 'Serverə qoşularkən xəta baş verdi', '');
+            }
+        },
+        async onServiceStatusChange(service) {
+            try {
+                const res = await updateIsActiveService(service.id);
+                const text = service.isActive ? 'aktiv' : 'deaktiv';
+
+                if (res.isSuccess) {
+                    this.$notify('success', `Xidmət ${text} edildi`, '');
+                    await this.onRowExpand({ data: this.selectedSpecialty });
+                } else {
+                    res.errors.forEach(err => this.$notify('error', err, 'Status yenilənə bilmədi'));
+                }
+            } catch (error) {
+                this.$notify('error', 'Serverə qoşularkən xəta baş verdi', '');
+            }
+        }
     },
 };
 </script>
@@ -703,5 +766,42 @@ export default {
     padding: 0.25rem 0.5rem !important;
     font-size: 0.85rem !important;
     height: 28px !important;
+}
+
+.empty-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: #6b7280;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    margin: 0.5rem;
+}
+
+.empty-footer i {
+    font-size: 1.2rem;
+    color: #9ca3af;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.empty-icon {
+    font-size: 2rem;
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.empty-text {
+    margin: 0;
+    font-weight: 500;
 }
 </style>

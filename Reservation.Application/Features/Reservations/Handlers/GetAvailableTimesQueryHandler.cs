@@ -27,7 +27,11 @@ namespace Reservation.Application.Features.Reservations.Handlers
                 if (company == null)
                     return ResponseDto<Dictionary<string, bool>>.ErrorResponse("Şirkət tapılmadı", 200);
 
-                var spec = await _unitofWork.CompanySpecialities.FindAsync(x => x.SpecialtyId == request.SpecialtyId);
+                var spec = await _unitofWork.CompanySpecialities
+                                .FindWithIncludeAsync(
+                                    x => x.SpecialtyId == request.SpecialtyId,
+                                    query => query.Include(s => s.Specialty)
+                                );
                 var dbSpecList = spec.FirstOrDefault();
                 if (spec == null || dbSpecList.CompanyId != company.Id)
                     return ResponseDto<Dictionary<string, bool>>.ErrorResponse("Xidmət kateqoriyasi tapılmadı və ya şirkətə aid deyil", 200);
@@ -68,9 +72,12 @@ namespace Reservation.Application.Features.Reservations.Handlers
                                                                           .Where(s => s.CompanyServices.Any(cserv => cserv.CompanyId == request.CompanyId)))
                                            .Sum(s => s.DurationInMinutes);
 
+                if (dbSpecList?.Specialty?.RestMinute != null)
+                    totalSpecDuration += dbSpecList?.Specialty?.RestMinute;
+
                 var currentTime = start;
 
-                while(currentTime /*+ TimeSpan.FromMinutes(Convert.ToDouble(totalSpecDuration))*/ <= end)
+                while (currentTime /*+ TimeSpan.FromMinutes(Convert.ToDouble(totalSpecDuration))*/ <= end)
                 {
                     var endTime = currentTime + TimeSpan.FromMinutes(Convert.ToDouble(totalSpecDuration));
                     var endDateTime = request.Date.Date + endTime;
@@ -83,6 +90,8 @@ namespace Reservation.Application.Features.Reservations.Handlers
                     var dateTime = request.Date.Date + currentTime;
                     var isAvailable = false;
 
+                    var diff = DateTime.Now.TimeOfDay - currentTime;
+
                     // eger bu xidmetin bitme vaxti isin bitme saatini kecirse.loop dayandir
                     if (endTime > end)
                     {
@@ -93,20 +102,26 @@ namespace Reservation.Application.Features.Reservations.Handlers
                         else  // Eger rezervasiya sayi isci sayindan azdirsa - yeni hele bos yer var
                             isAvailable = reservationCount < employeeCount;
 
+                        if (diff.TotalMinutes >= 60)// vaxt kecib
+                            continue;
+
                         times[currentTime.ToString(@"hh\:mm")] = isAvailable;
                         break;
-                    }                
+                    }
 
-                    if (employeeCount == 0) // İşçi təyin edilməyibse
-                      isAvailable = false;
-                    else if (reservationCount > 0 )
+                    if (employeeCount == 0)
                         isAvailable = false;
-                    else  // Eger rezervasiya sayi isci sayindan azdirsa - yeni hele bos yer var
+                    else if (reservationCount > 0)
+                        isAvailable = false;
+                    else// Eger rezervasiya sayi isci sayindan azdirsa - yeni hele bos yer var
                         isAvailable = reservationCount <= employeeCount;
 
-                    times[currentTime.ToString(@"hh\:mm")] = isAvailable;
-
                     currentTime = currentTime.Add(TimeSpan.FromMinutes(Convert.ToDouble(totalSpecDuration)));
+
+                    if (diff.TotalMinutes >= 60)// vaxt kecib
+                        continue;
+
+                    times[currentTime.ToString(@"hh\:mm")] = isAvailable;
                 }
 
                 return ResponseDto<Dictionary<string, bool>>.SuccessResponse(times, 200);

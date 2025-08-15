@@ -21,3 +21,4 @@ export const getSpecialtiesByCompanyId = async (companyId) => {
     return api.get(`/Specialties/${companyId}`)
         .then(res => res.data);
 };
+

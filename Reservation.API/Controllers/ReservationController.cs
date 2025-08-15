@@ -31,12 +31,15 @@ namespace Reservation.API.Controllers
         [HttpGet("available-times")]
         public async Task<IActionResult> GetAvailableTimes([FromQuery] Guid companyId, [FromQuery] Guid specialtyId, [FromQuery] string date)
         {
-            var result = await _mediator.Send(new GetAvailableReservationTimesQuery
-            {
-                CompanyId = companyId,
-                SpecialtyId = specialtyId,
-                Date = DateTime.Parse(date)
-            });
+            var result = await _mediator.Send(new GetAvailableReservationTimesQuery(companyId,specialtyId,DateTime.Parse(date)));
+
+            return Ok(result);
+        }
+
+        [HttpGet("{companyId:guid}")]
+        public async Task<IActionResult> GetSpecialitiesByCompany(Guid companyId)
+        {
+            var result = await _mediator.Send(new GetSpecialitiesByCompanyIdQuery(companyId));
 
             return Ok(result);
         }

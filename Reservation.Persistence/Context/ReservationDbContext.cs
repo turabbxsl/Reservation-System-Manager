@@ -36,12 +36,34 @@ namespace Reservation.Persistence.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            ConfigureCompany(modelBuilder);
+            ConfigureCompanyReview(modelBuilder);
+            ConfigureReservation(modelBuilder);
+            ConfigureService(modelBuilder);
+            ConfigureStaffMember(modelBuilder);
+            ConfigureSpecialty(modelBuilder);
+            ConfigureCustomer(modelBuilder);
+            ConfigureStaffMemberService(modelBuilder);
+            ConfigureStaffMemberSpecialty(modelBuilder);
+            ConfigureReservationSpecService(modelBuilder);
+            ConfigureCompanySpecialty(modelBuilder);
+            ConfigureCompanyService(modelBuilder);
+
+            ConfigureSequences(modelBuilder);
+        }
+
+
+        private void ConfigureCompany(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Company>(entity =>
             {
                 entity.HasKey(x => x.Id);
                 entity.Property(x => x.Name).IsRequired().HasMaxLength(100);
             });
+        }
 
+        private void ConfigureCompanyReview(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<CompanyReview>(entity =>
             {
                 entity.HasKey(x => x.Id);
@@ -49,95 +71,95 @@ namespace Reservation.Persistence.Context
                 entity.Property(x => x.Rating).IsRequired();
 
                 entity.HasOne(x => x.Company)
-                    .WithMany(c => c.CompanyReviews)
-                    .HasForeignKey(x => x.CompanyId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(c => c.CompanyReviews)
+                      .HasForeignKey(x => x.CompanyId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
+        }
 
+        private void ConfigureReservation(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Reservation.Domain.Entities.Reservation>(entity =>
             {
                 entity.HasKey(x => x.Id);
 
                 entity.Property(x => x.Title)
-                    .HasMaxLength(200);
+                      .HasMaxLength(200);
 
                 entity.Property(x => x.ReservationTime)
-                    .IsRequired();
+                      .IsRequired();
 
                 entity.Property(x => x.Status)
-                    .IsRequired();
+                      .IsRequired();
 
                 entity.HasOne(x => x.Company)
-                    .WithMany(c => c.Reservations)
-                    .HasForeignKey(x => x.CompanyId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(c => c.Reservations)
+                      .HasForeignKey(x => x.CompanyId)
+                      .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(x => x.Specialty)
-                    .WithMany(s => s.Reservations)
-                    .HasForeignKey(x => x.SpecialtyId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                      .WithMany(s => s.Reservations)
+                      .HasForeignKey(x => x.SpecialtyId)
+                      .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(x => x.StaffMember)
-                    .WithMany(sm => sm.Reservations)
-                    .HasForeignKey(x => x.StaffMemberId)
-                    .OnDelete(DeleteBehavior.SetNull);
+                      .WithMany(sm => sm.Reservations)
+                      .HasForeignKey(x => x.StaffMemberId)
+                      .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(x => x.Customer)
-                    .WithMany(z => z.Reservations)
-                    .HasForeignKey(x => x.CustomerId)
-                    .OnDelete(DeleteBehavior.SetNull);
+                      .WithMany(z => z.Reservations)
+                      .HasForeignKey(x => x.CustomerId)
+                      .OnDelete(DeleteBehavior.SetNull);
             });
+        }
 
+        private void ConfigureService(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Service>(entity =>
             {
                 entity.HasKey(x => x.Id);
                 entity.Property(x => x.Name).IsRequired().HasMaxLength(100);
                 entity.Property(x => x.Price).IsRequired();
 
-                /*                entity.HasOne(x => x.Company)
-                                    .WithMany(c => c.Services)
-                                    .HasForeignKey(x => x.CompanyId)
-                                    .OnDelete(DeleteBehavior.Restrict);*/
-
                 entity.HasOne(x => x.Specialty)
-               .WithMany(s => s.Services)
-               .HasForeignKey(x => x.SpecialtyId)
-               .OnDelete(DeleteBehavior.SetNull);
+                      .WithMany(s => s.Services)
+                      .HasForeignKey(x => x.SpecialtyId)
+                      .OnDelete(DeleteBehavior.SetNull);
             });
+        }
 
+        private void ConfigureStaffMember(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<StaffMember>(entity =>
             {
                 entity.HasKey(x => x.Id);
 
                 entity.Property(x => x.FullName)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                //entity.HasOne(x => x.Specialty)
-                //    .WithMany(s => s.StaffMembers)
-                //    .HasForeignKey(x => x.SpecialtyId)
-                //    .OnDelete(DeleteBehavior.Restrict);
+                      .IsRequired()
+                      .HasMaxLength(100);
 
                 entity.HasOne(x => x.Company)
-                    .WithMany(c => c.StaffMembers)
-                    .HasForeignKey(x => x.CompanyId)
-                    .OnDelete(DeleteBehavior.Cascade);
+                      .WithMany(c => c.StaffMembers)
+                      .HasForeignKey(x => x.CompanyId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
+        }
 
+        private void ConfigureSpecialty(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Specialty>(entity =>
             {
                 entity.HasKey(x => x.Id);
 
                 entity.Property(x => x.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                //entity.HasMany(x => x.StaffMembers)
-                //    .WithOne(sm => sm.Specialty)
-                //    .HasForeignKey(sm => sm.SpecialtyId)
-                //    .OnDelete(DeleteBehavior.Restrict);
+                      .IsRequired()
+                      .HasMaxLength(100);
             });
+        }
 
+        private void ConfigureCustomer(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(x => x.Id);
@@ -156,10 +178,13 @@ namespace Reservation.Persistence.Context
                 entity.Property(x => x.Note)
                       .HasMaxLength(500);
             });
+        }
 
+        private void ConfigureStaffMemberService(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<StaffMemberService>(entity =>
             {
-                entity.HasKey(x => new { x.StaffMemberId, x.ServiceId,x.SpecialtyID });
+                entity.HasKey(x => new { x.StaffMemberId, x.ServiceId, x.SpecialtyID });
 
                 entity.HasOne(x => x.StaffMember)
                       .WithMany(sm => sm.StaffMemberServices)
@@ -176,7 +201,10 @@ namespace Reservation.Persistence.Context
                       .HasForeignKey(x => x.SpecialtyID)
                       .OnDelete(DeleteBehavior.Cascade);
             });
+        }
 
+        private void ConfigureStaffMemberSpecialty(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<StaffMemberSpecialty>(entity =>
             {
                 entity.HasKey(x => new { x.StaffMemberId, x.SpecialtyId });
@@ -191,37 +219,10 @@ namespace Reservation.Persistence.Context
                       .HasForeignKey(x => x.SpecialtyId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
+        }
 
-            modelBuilder.Entity<CompanySpecialty>()
-             .HasKey(cs => new { cs.CompanyId, cs.SpecialtyId });
-
-            modelBuilder.Entity<CompanySpecialty>()
-                .HasOne(cs => cs.Company)
-                .WithMany(c => c.CompanySpecialties)
-                .HasForeignKey(cs => cs.CompanyId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<CompanySpecialty>()
-                .HasOne(cs => cs.Specialty)
-                .WithMany(s => s.CompanySpecialties)
-                .HasForeignKey(cs => cs.SpecialtyId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<CompanyService>()
-                .HasKey(cs => new { cs.CompanyId, cs.ServiceId });
-
-            modelBuilder.Entity<CompanyService>()
-                .HasOne(cs => cs.Company)
-                .WithMany(c => c.CompanyServices)
-                .HasForeignKey(cs => cs.CompanyId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<CompanyService>()
-                .HasOne(cs => cs.Service)
-                .WithMany(s => s.CompanyServices)
-                .HasForeignKey(cs => cs.ServiceId)
-                .OnDelete(DeleteBehavior.Cascade);
-
+        private void ConfigureReservationSpecService(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<ReservationSpecService>(entity =>
             {
                 entity.HasKey(x => x.Id);
@@ -241,8 +242,52 @@ namespace Reservation.Persistence.Context
                       .HasForeignKey(x => x.ServiceId)
                       .OnDelete(DeleteBehavior.Restrict);
             });
+        }
+
+        private void ConfigureCompanySpecialty(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CompanySpecialty>(entity =>
+            {
+                entity.HasKey(cs => new { cs.CompanyId, cs.SpecialtyId });
+
+                entity.HasOne(cs => cs.Company)
+                    .WithMany(c => c.CompanySpecialties)
+                    .HasForeignKey(cs => cs.CompanyId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(cs => cs.Specialty)
+                    .WithMany(s => s.CompanySpecialties)
+                    .HasForeignKey(cs => cs.SpecialtyId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
+
+        private void ConfigureCompanyService(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CompanyService>(entity =>
+            {
+                entity.HasKey(cs => new { cs.CompanyId, cs.ServiceId, cs.SpecialtyId });
+
+                entity.HasOne(cs => cs.Company)
+                    .WithMany(c => c.CompanyServices)
+                    .HasForeignKey(cs => cs.CompanyId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(cs => cs.Service)
+                    .WithMany(s => s.CompanyServices)
+                    .HasForeignKey(cs => cs.ServiceId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(cs => cs.Specialty)
+                    .WithMany(s => s.CompanyServices)
+                    .HasForeignKey(cs => cs.SpecialtyId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+        }
 
 
+        private void ConfigureSequences(ModelBuilder modelBuilder)
+        {
             modelBuilder.HasSequence<int>("Seq_ClientCode")
                 .HasMin(100000)
                 .HasMax(5000000)
@@ -263,6 +308,5 @@ namespace Reservation.Persistence.Context
                 .Property(o => o.ReservationNumer)
                 .HasDefaultValueSql("NEXT VALUE FOR Seq_ReservationNumber");
         }
-
     }
 }

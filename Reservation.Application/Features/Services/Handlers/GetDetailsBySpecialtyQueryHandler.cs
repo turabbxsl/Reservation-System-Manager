@@ -32,7 +32,8 @@ namespace Reservation.Application.Features.Services.Handlers
                 Id = s.Service.Id,
                 Name = s.Service.Name,
                 Price = s.Service.Price,
-                Duration = s.Service.DurationInMinutes
+                Duration = s.Service.DurationInMinutes,
+                IsActive = s.IsDeleted
             }).ToList();
 
             return ResponseDto<List<ServiceVM>>.SuccessResponse(result, 200);

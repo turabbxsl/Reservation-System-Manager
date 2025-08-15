@@ -165,6 +165,22 @@
   },
   {
     "ContainingType": "Reservation.API.Controllers.ReservationController",
+    "Method": "GetSpecialitiesByCompany",
+    "RelativePath": "api/Reservation/{companyId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.ReservationController",
     "Method": "GetAvailableTimes",
     "RelativePath": "api/Reservation/available-times",
     "HttpMethod": "GET",
@@ -380,6 +396,27 @@
       {
         "Name": "model",
         "Type": "Reservation.Application.Features.Services.Dtos.UpdateSpecialityDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Reservation.API.Controllers.SpecialtiesController",
+    "Method": "UpdateInSpecialtyWithService",
+    "RelativePath": "api/Specialties/update-status/{companyId}/{specialtyId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "companyId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "specialtyId",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],

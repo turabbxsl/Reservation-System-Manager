@@ -57,19 +57,16 @@ namespace Reservation.API.Controllers
         [HttpGet("details-by-specialty/{companyId}/{specialtyId}")]
         public async Task<IActionResult> GetDetailsBySpecialty(Guid companyId, Guid specialtyId)
         {
-            var result = await _mediator.Send(new GetDetailsBySpecialtyQuery
-            {
-                SpecialtyId = specialtyId,
-                CompanyId = companyId
-            });
-
+            var result = await _mediator.Send(new GetDetailsBySpecialtyQuery(companyId,specialtyId));
             return CreateActionResultInstance(result);
         }
 
 
         /// <summary>
-        /// Bütün Specialtylər
+        /// Sirketin xidmet kateqoriyalari
         /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
         [HttpGet("{companyId:guid}")]
         public async Task<IActionResult> GetSpecialtiesByCompanyId(Guid companyId)
         {
@@ -86,7 +83,7 @@ namespace Reservation.API.Controllers
         [HttpPut("update-specialty")]
         public async Task<IActionResult> UpdateSpecialty([FromBody] UpdateSpecialityDto model)
         {
-            var result = await _mediator.Send(new UpdateSpecialityCommand(model.id, model.newSpecialityName));
+            var result = await _mediator.Send(new UpdateSpecialityCommand(model.id, model.newSpecialityName,model.restMinute));
             return CreateActionResultInstance(result);
         }
 
@@ -101,6 +98,31 @@ namespace Reservation.API.Controllers
             var result = await _mediator.Send(new UpdateInSpecialtyServiceCommand(model.serviceId, model.serviceName, model.price, model.duration));
             return CreateActionResultInstance(result);
         }
+
+
+        /// <summary>
+        /// Xidmetin yenilenmesi
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="specialtyId"></param>
+        /// <returns></returns>
+
+        [HttpPut("update-specialty-status/{companyId:guid}/{specialtyId:guid}")]
+        public async Task<IActionResult> UpdateInSpecialtyWithService(Guid companyId, Guid specialtyId)
+        {
+            var result = await _mediator.Send(new UpdateStatusSpecialtyCommand(companyId, specialtyId));
+            return CreateActionResultInstance(result);
+        }
+
+
+
+        [HttpPut("update-service-status/{companyId:guid}/{specialtyId:guid}/{serviceId:guid}")]
+        public async Task<IActionResult> UpdateInSpecialtyWithService(Guid companyId, Guid specialtyId,Guid serviceId)
+        {
+            var result = await _mediator.Send(new UpdateStatusServiceCommand(companyId, specialtyId,serviceId));
+            return CreateActionResultInstance(result);
+        }
+
 
 
         /// <summary>

@@ -22,15 +22,6 @@ namespace Reservation.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.HasSequence<int>("Seq_ClientCode")
-                .StartsAt(110000L)
-                .HasMin(100000L)
-                .HasMax(5000000L);
-
-            modelBuilder.HasSequence<int>("Seq_ReservationNumber")
-                .HasMin(1L)
-                .HasMax(5000000L);
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
                 {
                     b.Property<Guid>("Id")
@@ -177,9 +168,6 @@ namespace Reservation.Persistence.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EndTime")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -194,9 +182,6 @@ namespace Reservation.Persistence.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StartTime")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
@@ -208,7 +193,7 @@ namespace Reservation.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.CompanyReview", b =>
@@ -241,113 +226,7 @@ namespace Reservation.Persistence.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("CompanyReviews");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.CompanyService", b =>
-                {
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CompanyId", "ServiceId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("CompaniesServices");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.CompanySpecialty", b =>
-                {
-                    b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecialtyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CompanyId", "SpecialtyId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.ToTable("CompaniesSpeciality");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.Customer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ClientCode")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR Seq_ClientCode");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsEmail")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSms")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Note")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
+                    b.ToTable("CompanyReviews", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.Reservation", b =>
@@ -362,30 +241,39 @@ namespace Reservation.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CustomerPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ReservationNumer")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR Seq_ReservationNumber");
-
                     b.Property<DateTime>("ReservationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("SpecialtyId")
+                    b.Property<Guid>("ServiceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("StaffMemberId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -396,48 +284,11 @@ namespace Reservation.Persistence.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("SpecialtyId");
+                    b.HasIndex("ServiceId");
 
                     b.HasIndex("StaffMemberId");
 
-                    b.ToTable("Reservations");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.ReservationSpecService", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("ReservationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecialtyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReservationId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.ToTable("ReservationSpecService");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.Service", b =>
@@ -446,8 +297,8 @@ namespace Reservation.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("CompanyType")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -472,9 +323,6 @@ namespace Reservation.Persistence.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("SpecialityType")
-                        .HasColumnType("int");
-
                     b.Property<Guid?>("SpecialtyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -483,9 +331,11 @@ namespace Reservation.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("SpecialtyId");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.Specialty", b =>
@@ -508,15 +358,12 @@ namespace Reservation.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("RestMinute")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialties");
+                    b.ToTable("Specialties", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.StaffMember", b =>
@@ -539,7 +386,7 @@ namespace Reservation.Persistence.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("SpecialtyId")
+                    b.Property<Guid>("SpecialtyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -551,66 +398,7 @@ namespace Reservation.Persistence.Migrations
 
                     b.HasIndex("SpecialtyId");
 
-                    b.ToTable("StaffMembers");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.StaffMemberService", b =>
-                {
-                    b.Property<Guid>("StaffMemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecialtyID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("StaffMemberId", "ServiceId", "SpecialtyID");
-
-                    b.HasIndex("ServiceId");
-
-                    b.HasIndex("SpecialtyID");
-
-                    b.ToTable("StaffMemberServices");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.StaffMemberSpecialty", b =>
-                {
-                    b.Property<Guid>("StaffMemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SpecialtyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("StaffMemberId", "SpecialtyId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.ToTable("StaffMemberSpecialty");
+                    b.ToTable("StaffMembers", (string)null);
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.User", b =>
@@ -758,44 +546,6 @@ namespace Reservation.Persistence.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("Reservation.Domain.Entities.CompanyService", b =>
-                {
-                    b.HasOne("Reservation.Domain.Entities.Company", "Company")
-                        .WithMany("CompanyServices")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.Service", "Service")
-                        .WithMany("CompanyServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.CompanySpecialty", b =>
-                {
-                    b.HasOne("Reservation.Domain.Entities.Company", "Company")
-                        .WithMany("CompanySpecialties")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("CompanySpecialties")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Specialty");
-                });
-
             modelBuilder.Entity("Reservation.Domain.Entities.Reservation", b =>
                 {
                     b.HasOne("Reservation.Domain.Entities.Company", "Company")
@@ -804,14 +554,9 @@ namespace Reservation.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Reservation.Domain.Entities.Customer", "Customer")
+                    b.HasOne("Reservation.Domain.Entities.Service", "Service")
                         .WithMany("Reservations")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("Reservations")
-                        .HasForeignKey("SpecialtyId")
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -822,46 +567,25 @@ namespace Reservation.Persistence.Migrations
 
                     b.Navigation("Company");
 
-                    b.Navigation("Customer");
-
-                    b.Navigation("Specialty");
+                    b.Navigation("Service");
 
                     b.Navigation("StaffMember");
                 });
 
-            modelBuilder.Entity("Reservation.Domain.Entities.ReservationSpecService", b =>
-                {
-                    b.HasOne("Reservation.Domain.Entities.Reservation", "Reservation")
-                        .WithMany("ReservationSpecServices")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.Service", "Service")
-                        .WithMany("ReservationSpecServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("ReservationSpecServices")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
-
-                    b.Navigation("Service");
-
-                    b.Navigation("Specialty");
-                });
-
             modelBuilder.Entity("Reservation.Domain.Entities.Service", b =>
                 {
+                    b.HasOne("Reservation.Domain.Entities.Company", "Company")
+                        .WithMany("Services")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
                         .WithMany("Services")
                         .HasForeignKey("SpecialtyId")
                         .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Company");
 
                     b.Navigation("Specialty");
                 });
@@ -874,57 +598,15 @@ namespace Reservation.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Reservation.Domain.Entities.Specialty", null)
+                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
                         .WithMany("StaffMembers")
-                        .HasForeignKey("SpecialtyId");
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.StaffMemberService", b =>
-                {
-                    b.HasOne("Reservation.Domain.Entities.Service", "Service")
-                        .WithMany("StaffMemberServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("StaffMemberServices")
-                        .HasForeignKey("SpecialtyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.StaffMember", "StaffMember")
-                        .WithMany("StaffMemberServices")
-                        .HasForeignKey("StaffMemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Service");
 
                     b.Navigation("Specialty");
-
-                    b.Navigation("StaffMember");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.StaffMemberSpecialty", b =>
-                {
-                    b.HasOne("Reservation.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("StaffMemberSpecialties")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Reservation.Domain.Entities.StaffMember", "StaffMember")
-                        .WithMany("StaffMemberSpecialties")
-                        .HasForeignKey("StaffMemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Specialty");
-
-                    b.Navigation("StaffMember");
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.User", b =>
@@ -942,49 +624,23 @@ namespace Reservation.Persistence.Migrations
                 {
                     b.Navigation("CompanyReviews");
 
-                    b.Navigation("CompanyServices");
-
-                    b.Navigation("CompanySpecialties");
-
                     b.Navigation("Reservations");
+
+                    b.Navigation("Services");
 
                     b.Navigation("StaffMembers");
 
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Reservation.Domain.Entities.Customer", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("Reservation.Domain.Entities.Reservation", b =>
-                {
-                    b.Navigation("ReservationSpecServices");
-                });
-
             modelBuilder.Entity("Reservation.Domain.Entities.Service", b =>
                 {
-                    b.Navigation("CompanyServices");
-
-                    b.Navigation("ReservationSpecServices");
-
-                    b.Navigation("StaffMemberServices");
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("Reservation.Domain.Entities.Specialty", b =>
                 {
-                    b.Navigation("CompanySpecialties");
-
-                    b.Navigation("ReservationSpecServices");
-
-                    b.Navigation("Reservations");
-
                     b.Navigation("Services");
-
-                    b.Navigation("StaffMemberServices");
-
-                    b.Navigation("StaffMemberSpecialties");
 
                     b.Navigation("StaffMembers");
                 });
@@ -992,10 +648,6 @@ namespace Reservation.Persistence.Migrations
             modelBuilder.Entity("Reservation.Domain.Entities.StaffMember", b =>
                 {
                     b.Navigation("Reservations");
-
-                    b.Navigation("StaffMemberServices");
-
-                    b.Navigation("StaffMemberSpecialties");
                 });
 #pragma warning restore 612, 618
         }

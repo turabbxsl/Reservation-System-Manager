@@ -13,7 +13,9 @@ namespace Reservation.Application.Mapping
             CreateMap<CompanySpecialty, SpecialtyVM>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.SpecialtyId, opt => opt.MapFrom(src => src.SpecialtyId))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Specialty.Name));
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Specialty.Name))
+            .ForMember(dest => dest.RestMinute, opt => opt.MapFrom(src => src.Specialty.RestMinute))
+            .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsDeleted));
 
             CreateMap<ServiceDto, ServiceCommand>()
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))

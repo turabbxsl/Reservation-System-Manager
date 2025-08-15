@@ -25,6 +25,7 @@ namespace Reservation.Application.Features.Specialty.Handlers
                     return ResponseDto<bool>.ErrorResponse(new List<string>() { "Xidmət kateqoriyası tapılmadı" }, 200);
 
                 speciality.Name = request.newSpecialityName;
+                speciality.RestMinute = request.restMinute;
                 speciality.UpdatedAt = DateTime.Now;
                 _unitOfWork.Specialities.Update(speciality);
 

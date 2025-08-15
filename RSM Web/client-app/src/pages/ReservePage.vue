@@ -62,8 +62,8 @@
 
 <script>
 
-import { getAllCompanies, getSpecialtiesByCompanyId } from "@/services/companyService";
-import { getAvailableTimes, createReservation, getServicesBySpecialtyWithCompanyId } from "@/services/reservationService";
+import { getAllCompanies } from "@/services/companyService";
+import { getAvailableTimes, createReservation, getServicesBySpecialtyWithCompanyId, getSpecialtiesByCompanyId } from "@/services/reservationService";
 import { ref, onMounted, watch, computed } from "vue";
 import { useAuthStore } from "@/stores/authStore";
 import moment from "moment";

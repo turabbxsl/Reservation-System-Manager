@@ -115,3 +115,25 @@ export function saveInSpecialtyWithServices(payload) {
     return api.post(`/Specialties/inspeciality-create-services`, dataToSend)
         .then(res => res.data);
 }
+
+export function updateIsActiveSpecialty(specialtyId) {
+    const authStore = useAuthStore();
+    const companyId = authStore.companyId;
+    if (!companyId) {
+        throw new Error('Company ID not found in authStore');
+    }
+
+    return api.put(`/Specialties/update-status/${companyId}/${specialtyId}`)
+        .then(res => res.data);
+}
+
+export function updateIsActiveService(serviceId) {
+    const authStore = useAuthStore();
+    const companyId = authStore.companyId;
+    if (!companyId) {
+        throw new Error('Company ID not found in authStore');
+    }
+
+    return api.put(`/Specialties/update-service-status/${companyId}/${serviceId}`)
+        .then(res => res.data);
+}

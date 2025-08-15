@@ -28,3 +28,12 @@ export function getServicesBySpecialtyWithCompanyId(companyId, specialtyId) {
     return api.get(`/Specialties/by-specialty/${companyId}/${specialtyId}`)
         .then(res => res.data);
 }
+
+export function getSpecialtiesByCompanyId(companyId) {
+    if (!companyId) {
+        throw new Error('Company ID not found in authStore');
+    }
+
+    return api.get(`${API_BASE}/${companyId}`)
+        .then(res => res.data);
+}

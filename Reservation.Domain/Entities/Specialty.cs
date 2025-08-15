@@ -16,9 +16,6 @@ namespace Reservation.Domain.Entities
 
         public ICollection<Reservation> Reservations { get; set; }
 
-        /*        public Guid? CompanyId { get; set; }
-                public Company Company { get; set; }*/
-
         public ICollection<CompanySpecialty> CompanySpecialties { get; set; }
 
         public ICollection<StaffMemberSpecialty> StaffMemberSpecialties { get; set; }
@@ -26,6 +23,8 @@ namespace Reservation.Domain.Entities
         public ICollection<StaffMemberService> StaffMemberServices { get; set; }
 
         public ICollection<ReservationSpecService> ReservationSpecServices { get; set; }
+
+        public ICollection<CompanyService> CompanyServices { get; set; }
 
 
         public Specialty()
@@ -37,6 +36,7 @@ namespace Reservation.Domain.Entities
             Reservations = new List<Reservation>(); 
             StaffMemberSpecialties = new List<StaffMemberSpecialty>();
             StaffMemberServices = new List<StaffMemberService>();
+            CompanyServices = new List<CompanyService>();
         }
     }
 }

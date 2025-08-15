@@ -4,11 +4,7 @@ using Reservation.Shared.BaseResponse;
 
 namespace Reservation.Application.Features.Services.Queries
 {
-    public class GetDetailsBySpecialtyQuery : IRequest<ResponseDto<List<ServiceVM>>>
-    {
-        public Guid CompanyId { get; set; }
-        public Guid SpecialtyId { get; set; }
-    }
+    public record GetDetailsBySpecialtyQuery(Guid CompanyId, Guid SpecialtyId) : IRequest<ResponseDto<List<ServiceVM>>>;
 }
 
 

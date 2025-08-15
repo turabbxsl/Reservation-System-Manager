@@ -5,6 +5,7 @@
         public Guid Id{ get; set; }
         public Guid? SpecialtyId { get; set; }
         public string Name{ get; set; }
-
+        public int? RestMinute { get; set; }
+        public bool IsActive { get; set; }
     }
 }
